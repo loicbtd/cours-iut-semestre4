@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="4ba91225-88ea-4dac-aafa-1575d48794bc" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/programmation-repartie/META-INF/programmation-repartie.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/programmation-repartie/tp1/exercice1/EchoClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/programmation-repartie/tp1/exercice1/EchoServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/programmation-repartie/tp1/exercice2/EchoClient.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/programmation-repartie/tp1/exercice2/EchoServer.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/programmation-repartie.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tp1/exercice1/EchoClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tp1/exercice1/EchoServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tp1/exercice2/EchoClient.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tp1/exercice2/EchoServer.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1WOPQCrl4pFQKX0ru6Gf9dDWoi3" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4ba91225-88ea-4dac-aafa-1575d48794bc" name="Default Changelist" comment="" />
+      <created>1579017650383</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1579017650383</updated>
+      <workItem from="1579017655967" duration="50000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="736" y="201" width="426" height="508" key="FileChooserDialogImpl" timestamp="1579017698457">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="736" y="201" width="426" height="508" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579017698457" />
+    <state x="334" y="64" width="1241" height="836" key="new project wizard" timestamp="1579017705402">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="334" y="64" width="1241" height="836" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1579017705402" />
+  </component>
+</project>

@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.Socket;
 
-class EchoClient  {
+class EchoClient2 {
 
     public static void main(String []args) {
 
