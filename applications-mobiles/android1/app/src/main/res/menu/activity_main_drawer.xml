@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/home" />
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_camera_alt_black_24dp"
+            android:title="@string/camera" />
+        <item
+            android:id="@+id/nav_data"
+            android:icon="@drawable/ic_crop_original_black_24dp"
+            android:title="@string/data" />
+        <item
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map_black_24dp"
+            android:title="@string/map" />
+        <item
+            android:id="@+id/nav_credits"
+            android:icon="@drawable/ic_info_outline_black_24dp"
+            android:title="@string/credits" />
+    </group>
+
+</menu>

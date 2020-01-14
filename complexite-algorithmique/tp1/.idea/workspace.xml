@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="80c5cb06-8c8d-4c79-80ae-33a0d2048e8d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1WLHvipX5JU0lRCu45Jm0f2l1ok" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Primality">
+    <configuration name="Primality" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Primality" />
+      <module name="tp1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Sort" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Sort" />
+      <module name="tp1" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Primality" />
+        <item itemvalue="Application.Sort" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="80c5cb06-8c8d-4c79-80ae-33a0d2048e8d" name="Default Changelist" comment="" />
+      <created>1578922187328</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1578922187328</updated>
+      <workItem from="1578922191823" duration="30000" />
+      <workItem from="1578922290177" duration="4692000" />
+      <workItem from="1579014646038" duration="223000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="736" y="201" width="426" height="508" key="FileChooserDialogImpl" timestamp="1579014852285">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="736" y="201" width="426" height="508" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579014852285" />
+    <state width="937" height="251" key="GridCell.Tab.0.bottom" timestamp="1578926987082">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="937" height="251" key="GridCell.Tab.0.bottom/0.0.1920.1080@0.0.1920.1080" timestamp="1578926987082" />
+    <state width="937" height="251" key="GridCell.Tab.0.center" timestamp="1578926987082">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="937" height="251" key="GridCell.Tab.0.center/0.0.1920.1080@0.0.1920.1080" timestamp="1578926987082" />
+    <state width="937" height="251" key="GridCell.Tab.0.left" timestamp="1578926987082">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="937" height="251" key="GridCell.Tab.0.left/0.0.1920.1080@0.0.1920.1080" timestamp="1578926987082" />
+    <state width="937" height="251" key="GridCell.Tab.0.right" timestamp="1578926987082">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state width="937" height="251" key="GridCell.Tab.0.right/0.0.1920.1080@0.0.1920.1080" timestamp="1578926987082" />
+    <state x="442" y="62" width="1026" height="840" key="SettingsEditor" timestamp="1578922403013">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="442" y="62" width="1026" height="840" key="SettingsEditor/0.0.1920.1080@0.0.1920.1080" timestamp="1578922403013" />
+    <state x="638" y="312" key="com.intellij.ide.util.TipDialog" timestamp="1578922193366">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="638" y="312" key="com.intellij.ide.util.TipDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578922193366" />
+    <state x="717" y="147" width="475" height="670" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1578923966934">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="717" y="147" width="475" height="670" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/0.0.1920.1080@0.0.1920.1080" timestamp="1578923966934" />
+    <state x="555" y="30" width="810" height="957" key="find.popup" timestamp="1578924995079">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="555" y="30" width="810" height="957" key="find.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1578924995079" />
+    <state x="334" y="64" width="1241" height="836" key="new project wizard" timestamp="1579014868156">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="334" y="64" width="1241" height="836" key="new project wizard/0.0.1920.1080@0.0.1920.1080" timestamp="1579014868156" />
+    <state x="623" y="211" width="672" height="678" key="search.everywhere.popup" timestamp="1578926494172">
+      <screen x="0" y="0" width="1920" height="1080" />
+    </state>
+    <state x="623" y="211" width="672" height="678" key="search.everywhere.popup/0.0.1920.1080@0.0.1920.1080" timestamp="1578926494172" />
+  </component>
+</project>
