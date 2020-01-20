@@ -4,24 +4,25 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import net.loicbertrand.android1.R;
 
 public class CharacterViewHolder extends RecyclerView.ViewHolder{
 
-    public TextView firstnameTextView;
-    public TextView familynameTextView;
-    public TextView latitudeTextView;
-    public TextView longitudeTextView;
+    public TextView firstnameView;
+    public TextView familynameView;
+    public TextView latitudeView;
+    public TextView longitudeView;
     public ImageView pictureImageView;
 
 
-    public CharacterViewHolder(@NonNull View firstnameTextView,@NonNull View familynameTextView,@NonNull View latitudeTextView,@NonNull TextView longitudeTextView) {
+    public CharacterViewHolder(View itemView) {
         super(itemView);
-        this.firstnameTextView = (TextView) firstnameTextView;
-        this.familynameTextView = (TextView) familynameTextView;
-        this.latitudeTextView = (TextView) latitudeTextView;
-        this.longitudeTextView = (TextView) longitudeTextView;
-//        this.pictureImageView = (ImageView) pictureImageView;
+        this.firstnameView = (TextView) itemView.findViewById(R.id.text_view_character_first_name);
+        this.familynameView = (TextView) itemView.findViewById(R.id.text_view_character_family_name);
+        this.latitudeView = (TextView) itemView.findViewById(R.id.text_view_character_latitude);
+        this.longitudeView = (TextView) itemView.findViewById(R.id.text_view_character_longitude);
+        this.pictureImageView = (ImageView) itemView.findViewById(R.id.image_view_character_pitcture);
     }
 }
