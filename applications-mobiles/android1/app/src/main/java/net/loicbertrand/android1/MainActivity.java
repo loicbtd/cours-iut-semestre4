@@ -1,8 +1,11 @@
 package net.loicbertrand.android1;
 
+import android.content.Intent;
 import android.os.Bundle;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+
+import android.view.MenuItem;
 import android.view.View;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -21,10 +24,27 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
+
+        toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                if (item.getItemId() == R.id.action_settings) {
+                    Intent intent = new Intent(getApplicationContext(), SettingsActivity.class);
+                    startActivity(intent);
+                    return true;
+                }
+                return false;
+            }
+        });
+
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -33,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
+
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
@@ -41,8 +62,11 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_credits, R.id.nav_map, R.id.nav_credits)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
+
         NavigationUI.setupWithNavController(navigationView, navController);
     }
 
