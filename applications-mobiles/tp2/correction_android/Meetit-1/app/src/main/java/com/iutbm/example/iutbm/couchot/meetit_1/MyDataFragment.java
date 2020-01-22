@@ -105,14 +105,20 @@ public class MyDataFragment extends Fragment {
 
     public void updateUI(){
         sharedPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
+
         Boolean locationEnabled = sharedPref.getBoolean(getResources().getString(R.string.key_location_switch), false);
-
         String isLocationEnable = ": ";
-
         isLocationEnable += locationEnabled ? "True" : "False";
-
         tv_loc_enabled_out = (TextView) root.findViewById(R.id.text_location_switch_out);
         tv_loc_enabled_out.setText(isLocationEnable);
+
+        String search_delay = sharedPref.getString(getResources().getString(R.string.key_search_radius), "NC");
+        TextView text_view_search_delay = (TextView) root.findViewById(R.id.text_search_delay_out);
+        text_view_search_delay.setText(String.valueOf(search_delay));
+
+        String radius = sharedPref.getString(getResources().getString(R.string.key_search_radius), "NC");
+        TextView text_view_search_radius = (TextView) root.findViewById(R.id.text_search_radius_out);
+        text_view_search_radius.setText(String.valueOf(radius));
     }
 
 

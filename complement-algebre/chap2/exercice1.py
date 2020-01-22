@@ -60,7 +60,6 @@ def main():
 
     print("4. MULTIPLICATION:")
     print(multiplier_polynomes([1, 2, 3, 4], [1, 2, 3, 4]))
-    print(multiplier_polynomes())
-    
+
 
 main()

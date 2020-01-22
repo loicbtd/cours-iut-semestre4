@@ -2,99 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d365401e-ec92-48ab-ad3e-92afceac31b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../applications-mobiles/android1/app/app.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../applications-mobiles/tp2/correction_android/Meetit-1/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../applications-mobiles/tp2/correction_android/Meetit-1/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.idea/codeStyles/Project.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.idea/runConfigurations.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/androidTest/java/net/loicbertrand/android1/ExampleInstrumentedTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/ic_launcher-web.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/MainActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/SettingsActivity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/camera/CameraFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/camera/CameraViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/credits/CreditsFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/credits/CreditsViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/data/DataFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/data/DataViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/home/Character.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/home/CharacterListAdapter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/home/CharacterViewHolder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/home/HomeFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/home/HomeViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/map/MapFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/map/MapViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/send/SendFragment.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/java/net/loicbertrand/android1/ui/send/SendViewModel.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_camera_alt_black_24dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_crop_original_black_24dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_home_black_24dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_info_outline_black_24dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_map_black_24dp.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_menu_camera.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_menu_gallery.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_menu_manage.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_menu_send.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/ic_menu_share.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/drawable/side_nav_bar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/activity_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/app_bar_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/content_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_character.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_gallery.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_home.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_send.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_share.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_slideshow.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/fragment_tools.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/nav_header_main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/layout/settings_activity.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/menu/activity_main_drawer.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/menu/main.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-hdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-hdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-hdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-mdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-mdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-mdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values-v21/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values/arrays.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values/dimens.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/values/styles.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/main/res/xml/root_preferences.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/app/src/test/java/net/loicbertrand/android1/ExampleUnitTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/build.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../applications-mobiles/android1/settings.gradle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/exercice1.py" beforeDir="false" afterPath="$PROJECT_DIR$/exercice1.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -122,6 +29,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../traitement-information" />
     <property name="settings.editor.selected.configurable" value="preferences.editor" />
   </component>
   <component name="RunManager" selected="Python.exercice1">
@@ -207,6 +115,7 @@
       <workItem from="1579079865735" duration="6000" />
       <workItem from="1579602885363" duration="2542000" />
       <workItem from="1579612858323" duration="2991000" />
+      <workItem from="1579651545722" duration="83000" />
     </task>
     <servers />
   </component>
@@ -222,10 +131,10 @@
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
     <state x="417" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1080@0.0.1920.1080" timestamp="1578998714452" />
-    <state x="259" y="201" width="426" height="508" key="FileChooserDialogImpl" timestamp="1579079599754">
+    <state x="258" y="177" width="426" height="508" key="FileChooserDialogImpl" timestamp="1579651626715">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="259" y="201" width="426" height="508" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579079599754" />
+    <state x="258" y="177" width="426" height="508" key="FileChooserDialogImpl/0.0.1920.1080@0.0.1920.1080" timestamp="1579651626715" />
     <state width="893" height="273" key="GridCell.Tab.0.bottom" timestamp="1579605395186">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>

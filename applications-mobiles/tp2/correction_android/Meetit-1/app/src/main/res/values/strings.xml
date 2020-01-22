@@ -29,8 +29,8 @@
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_location_switch">Location Enabled</string>
-    <string name="pref_search_radius_edit_text">Search radius</string>
-    <string name="pref_search_delay_edit_text">Search delay</string>
+    <string name="pref_search_radius_edit_text">Search radius: </string>
+    <string name="pref_search_delay_edit_text">Search delay: </string>
     <string name="pref_title_add_friends_to_messages">Add friends to messages</string>
     <string-array name="pref_example_list_titles">
         <item>Always</item>
