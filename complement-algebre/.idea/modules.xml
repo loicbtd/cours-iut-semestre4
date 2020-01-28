@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/chap2.iml" filepath="$PROJECT_DIR$/.idea/chap2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/chap2/.idea/complement-algebre.iml" filepath="$PROJECT_DIR$/chap2/.idea/complement-algebre.iml" />
     </modules>
   </component>
 </project>

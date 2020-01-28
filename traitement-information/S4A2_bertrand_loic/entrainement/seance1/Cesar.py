@@ -2,8 +2,8 @@ def encrypt(gap_size, message):
     encrypted_message = ""
     for char in message:
         if not char.isalpha():
-            
-        if  char.lower()
+
+        if char.lower()
     return encrypted_message
 
 

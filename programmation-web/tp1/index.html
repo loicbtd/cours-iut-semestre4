@@ -4,35 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <title>Document</title>
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>BMI App</title>
 </head>
 <body>
-    <h1>Calcul de l'indice de masse corporelle</h1>
-    
-    <h3>Inserez votre masse en KG et votre taille en m dans les deux champs de texte suivants:</h3>
-    
+
+<script type="text/html" id="fragment-navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nav-action" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <button class="dropdown-item" id="action-button-navbar"></button>
+                    <button class="dropdown-item" id="clear-button-navbar"></button>
+                    <button class="dropdown-item" id="print-button-navbar" onclick="window.print()"></button>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nav-modes" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" id="action-navigate-BMICalculation"></a>
+                    <a class="dropdown-item" id="action-navigate-FactorialCalculation"></a>
+                    <a class="dropdown-item" id="action-navigate-FibonacciCalculation"></a>
+                    <a class="dropdown-item" id="action-navigate-Converter"></a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="nav-help" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" id="action-navigate-SiteDescription"></a>
+                    <a class="dropdown-item" id="action-navigate-ContactUs"></a>
+                </div>
+            </li>
+        </ul>
+        <div class="d-inline align-content-center">
+            <a id="action-navigate-language" href="#"></a>
+        </div>
+    </div>
+</nav>
+</script>
+
+<script type="text/html" id="page-BMICalculation">
+<div class="container">
+    <h1 id="page-BMICalculation-title"></h1>
+    <h3 id="page-BMICalculation-instructions"></h3>
     <form>
         <div>
-            <label for="masse">Masse (en Kg)</label>
-            <input type="text" name="masse" id="masse"/>
-            <div id="info-erreur-masse" style="display: inline-block;"></div>
+            <label id="page-BMICalculation-label-mass" for="page-BMICalculation-input-mass"></label>
+            <input type="text" name="mass" id="page-BMICalculation-input-mass"/>
+            <div id="page-BMICalculation-info-error-mass" style="display: inline-block;"></div>
         </div>
         <div>
-            <label for="taille">Taille (en m)</label>
-            <input type="text" name="taille" id="taille"/>
-            <div id="info-erreur-taille" style="display: inline-block;"></div>
+            <label id="page-BMICalculation-label-size" for="page-BMICalculation-input-size"></label>
+            <input type="text" name="size" id="page-BMICalculation-input-size"/>
+            <div id="page-BMICalculation-info-error-size" style="display: inline-block;"></div>
+        </div>
+        <div>
+            <label id="page-BMICalculation-label-gender" for="page-BMICalculation-radio-male"></label>
+            <label for="page-BMICalculation-radio-female"></label>
+            <input type="radio" name="gender" id="page-BMICalculation-radio-female"><div id="page-BMICalculation-label-female" style="display: inline-block;"></div>
+            <input type="radio" name="gender" id="page-BMICalculation-radio-male"><div id="page-BMICalculation-label-male" style="display: inline-block;"></div>
         </div>
     </form>
-    
-    <button id="bouton-effacer" onclick="clear_data()">Effacer</button>
-    
-    <button id="bouton-calculer" onclick="calculate_imc()">Calculer</button>
-    
-    <span id="resultat"></span>
-    
-    
-    <script src="./app.js"></script>
+    <button id="page-BMICalculation-button-clear"></button>
+    <button id="page-BMICalculation-button-calculate"></button>
+    <span id="result"></span>
+</div>
+</script>
+
+<script type="text/html" id="page-ContactUs">
+<div class="container">
+    <div id="after_submit"></div>
+        <form id="contact_form" action="#" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <label class="required" for="name">Your name:</label><br />
+                <input id="name" class="input" name="name" type="text" value="" size="30" /><br />
+                <span id="name_validation" class="error_message"></span>
+            </div>
+            <div class="row">
+                <label class="required" for="email">Your email:</label><br />
+                <input id="email" class="input" name="email" type="text" value="" size="30" /><br />
+                <span id="email_validation" class="error_message"></span>
+            </div>
+            <div class="row">
+                <label class="required" for="message">Your message:</label><br />
+                <textarea id="message" class="input" name="message" rows="7" cols="30"></textarea><br />
+                <span id="message_validation" class="error_message"></span>
+            </div>
+            <input id="submit_button" type="submit" value="Send email" />
+        </form>
+    </div>
+</script>
+
+<script type="text/html" id="page-Converter">
+<div class="container">
+    <h1>Convertisseur</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-Converter-en">
+<div class="container">
+    <h1>Converter</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-FactorialCalculation">
+<div class="container">
+    <h1>Calcul Factoriel</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-FactorialCalculation-en">
+<div class="container">
+    <h1>Factrorial Calculation</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-FibonacciCalculation">
+<div class="container">
+    <h1>Calcul Fibonacci</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-FibonacciCalculation-en">
+<div class="container">
+    <h1>Fibonacci Calculation</h1>
+</div>
+</script>
+
+<script type="text/html" id="page-SiteDescription">
+<div class="container">
+    <h1 id="page-SiteDescription-title"></h1>
+</div>
+</script>
+
+<script src="functions/BMICalculation-functions.js"></script>
+<script src="functions/Converter-functions.js"></script>
+<script src="functions/FactorialCalculation-functions.js"></script>
+<script src="functions/FibonacciCalculation-functions.js"></script>
+<script src="application.js"></script>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </body>
 </html>
+

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<title>Agenda</title>
+	<link rel="stylesheet" href="ressource/style/materialize.min.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+	<link href="ressource/style/app-style.css" rel="stylesheet">
+</head>
+<body>
+
+Erreur dans l'app !
+
+<script type="text/html" id="page-liste-devoir">
+	<div class="white-text center-align navbar black">
+		<span class="titre-page"><i class="fas fa-book"></i> Mes Devoirs</span>
+	</div>
+	<div class="row">
+		<div class="col s12">
+		<a href="#ajouter-devoir" class="btn my-1 w-100 blue"><i class="fas fa-plus"></i></a>
+		</div>
+		<div class="page-liste-devoir col s12">
+			<ul class="collection" id="liste-devoir"></ul>
+		</div>
+	</div>
+</script>
+
+<script type="plain/html" id="page-devoir">
+	<div class="white-text center-align navbar black">
+		<span class="titre-page"><i class="fas fa-book-open"></i> Détails</span>
+	</div>
+	<div class="row">
+		<div class="col s12">
+			<div class="card blue darken-1">
+				<div class="card-content white-text">
+					<span id="devoir-nom" class="titre1"></span>
+					<span id="devoir-matiere" class="titre2"></span>
+					<p id="devoir-description" class="description"></p>
+				</div>
+			</div>
+			<a href="#" class="btn grey darken-1 w-100"><i class="fas fa-arrow-left"></i> Retour</a>
+		</div>
+	</div>
+</script>
+
+<script type="plain/html" id="page-ajouter-devoir">
+	<div class="white-text center-align navbar black">
+		<span class="titre-page"><i class="fas fa-book-open"></i> Devoir</span>
+	</div>
+	<article id='main' class="row current">
+		<section>
+			<form id="formulaire-ajouter" class="col s12">
+				<div class="row mt-3">
+					<div class="col s12">
+						<span class="titre-formulaire">Identification du devoir</span>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" name="nom" id="devoir-nom"/>
+						<label for="devoir-nom">Nom</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" name="matiere" id="devoir-matiere"/>
+						<label for="devoir-matiere">Matiere</label>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col s12">
+						<span class="titre-formulaire">D&eacute;tails sur le devoir</span>
+					</div>
+					<div class="col s12">
+						<label for="devoir-description">Description</label>
+						<textarea name="description" id="devoir-description" class="materialize-textarea"></textarea>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col s6">
+						<a href="#" class="btn grey darken-1 w-100"><i class="fas fa-arrow-left"></i> Retour</a>
+					</div>
+					<div class="col s6">
+						<button type="submit" id="ajouter" class="btn blue w-100"><i class="fas fa-check-circle"></i> Ajouter</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</article>
+</script>
+
+<script type="plain/html" id="page-modifier-devoir">
+	<div class="white-text center-align navbar black">
+		<span class="titre-page"><i class="fas fa-book-open"></i> Modifier Devoir</span>
+	</div>
+	<article id='main' class="row current">
+		<section>
+			<form id="formulaire-modifier" class="col s12">
+				<div class="row mt-3">
+					<div class="col s12">
+						<span class="titre-formulaire">Identification du devoir</span>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" name="nom" id="devoir-nom"/>
+						<label class="active" for="devoir-nom">Nom</label>
+					</div>
+					<div class="input-field col s6">
+						<input type="text" name="matiere" id="devoir-matiere"/>
+						<label class="active"f for="devoir-matiere">Matiere</label>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col s12">
+						<span class="titre-formulaire">D&eacute;tails sur le devoir</span>
+					</div>
+					<div class="col s12">
+						<label for="devoir-description">Description</label>
+						<textarea name="description" id="devoir-description" class="materialize-textarea"></textarea>
+					</div>
+				</div>
+				<div class="row mt-1">
+					<div class="col s6">
+						<a href="#" class="btn grey darken-1 w-100"><i class="fas fa-arrow-left"></i> Retour</a>
+					</div>
+					<div class="col s6">
+						<button type="submit" id="modifier" class="btn blue w-100"><i class="fas fa-check-circle"></i> Modifier</button>
+					</div>
+				</div>
+			</form>
+		</section>
+	</article>
+</script>
+
+<script src="ressource/script/jquery.min.js"></script>
+<script src="ressource/script/materialize.min.js"></script>
+
+<script src="modele/Devoir.js"></script>
+<script src="donnee/DevoirDAO.js"></script>
+<script src="vue/AjouterDevoirVue.js"></script>
+<script src="vue/ModifierDevoirVue.js"></script>
+<script src="vue/DevoirVue.js"></script>
+<script src="vue/ListeDevoirVue.js"></script>
+<script src="controleur/application.js"></script>
+
+</body>
+</html>
