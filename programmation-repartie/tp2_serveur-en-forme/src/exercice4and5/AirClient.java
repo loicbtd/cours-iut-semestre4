@@ -1,14 +1,12 @@
-package exercice3;
+package exercice4and5;
 
 import exercice1.Rond;
 
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 
@@ -33,7 +31,6 @@ public class AirClient {
     public void requestLoop(){
         try {
             List<Object> formes = saisirFormes();
-            objectOutputStream.writeInt(formes.size());
             sendFormes(formes);
             readCaracteristiques(formes.size());
         }catch(IOException ignored){
@@ -85,15 +82,19 @@ public class AirClient {
 
     private void sendFormes(List<Object> formes) throws IOException {
         for (Object forme : formes) {
+            objectOutputStream.writeInt(0);
+            objectOutputStream.flush();
             if (forme instanceof Rond) {
-                objectOutputStream.writeInt(1);
                 objectOutputStream.writeObject((Rond) forme);
+                objectOutputStream.flush();
             }
             else if (forme instanceof Rectangle) {
-                objectOutputStream.writeInt(2);
                 objectOutputStream.writeObject((Rectangle) forme);
+                objectOutputStream.flush();
             }
         }
+        objectOutputStream.writeInt(1);
+        objectOutputStream.flush();
     }
 
     private void readCaracteristiques(int nombre_formes) throws IOException{

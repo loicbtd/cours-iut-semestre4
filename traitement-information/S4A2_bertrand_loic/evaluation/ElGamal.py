@@ -1,3 +1,18 @@
+def est_premier(nombre):
+    try:
+        assert nombre >= 2
+    except AssertionError:
+        return False
+    for i in range(2, nombre):
+        if nombre % i == 0:
+            return False
+    return True
+
+def est_racine_primitive_modulo(p):
+    
+
+
+
 def generer_cle(p, g):
     """ Génèrer la clé
     :param p: nombre premier
@@ -61,24 +76,41 @@ def dechiffrement(cle, message_chiffre):
 
 
 def demarrer_outil_generation_cle():
-    print("### OUTIL EL GAMAL ###")
-    choix_possibles = [1, 2, 3]
+    import os
+    from sys import platform
+    if platform == "linux" or platform == "linux2":
+        clear = lambda: os.system('clear')
+    elif platform == "win32":
+        clear = lambda: os.system('cls')
+    else:
+        clear = lambda: print("clear not supported on your system")
+
+    choix_possibles = ['1', '2', '3']
     print(
+        "### OUTIL EL GAMAL ###\n"
         "1 : Générer une clé\n"
         "2 : Chiffrer un message\n"
         "3 : Déchiffrer un message\n"
     )
     choix = input()
+    while choix not in choix_possibles:
+        clear()
+        print("Erreur: Merci de saisir un choix parmis ceux proposer\n\n")
+        print(
+            "### OUTIL EL GAMAL ###\n"
+            "1 : Générer une clé\n"
+            "2 : Chiffrer un message\n"
+            "3 : Déchiffrer un message\n"
+        )
+        choix = input()
 
 
 def main():
-    demarrer_outil_generation_cle()
+    print(est_premier(2))
+    # demarrer_outil_generation_cle()
     # cle = generer_cle(14, 3)
     #
     # print(dechiffrement(cle, chiffrement(cle, "bonjour")))
-
-
-
     # message = "Le code de Polybe"
     # encrypted_message = "3215133514151415413532541215"
     #

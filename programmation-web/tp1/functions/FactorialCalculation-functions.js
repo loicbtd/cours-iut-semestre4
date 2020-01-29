@@ -1,20 +1,18 @@
-function bind_crtl_c_FactorialCalculation(){
-    let isCtrl = false;
+function clear_FactorialCalculation(){
+    document.getElementById("page-FactorialCalculation-input-value").value = "";
+    document.getElementById("page-FactorialCalculation-result").innerHTML = "";
+}
 
-    document.onkeyup = function(e){ 
-        if(e.which == 17) {
-            isCtrl=false; 
-        }
+
+function factorial(n){
+    let j = 1;
+    for(let i=1; i<=n; i++){
+        j = j*i;
     }
-    
-    document.onkeydown = function(e){
-    
-        if(e.which == 17) {
-            isCtrl=true;
-        }
-    
-        if(e.which == 67 && isCtrl == true) {
-            calculate_BMICalculation()
-        }
-    }
+    return j;
+}
+
+function calculate_FactorialCalculation(){
+    let input_value = document.getElementById("page-FactorialCalculation-input-value").value;
+    document.getElementById("page-FactorialCalculation-result").innerHTML = factorial(input_value);
 }

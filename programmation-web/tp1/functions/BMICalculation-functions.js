@@ -188,10 +188,10 @@ function calculate_BMICalculation(){
             }
 
             if(hash.match(/-fr$/)) {
-                document.getElementById("result").innerHTML = "Votre IMC est egale à " + imc.toFixed(2) + ". Remarque: " + etat;
+                document.getElementById("page-BMICalculation-result").innerHTML = "Votre IMC est egale à " + imc.toFixed(2) + ". Remarque: " + etat;
             }
             else {
-                document.getElementById("result").innerHTML = "Your BMI is equal to " + imc.toFixed(2) + ". Note: " + etat;
+                document.getElementById("page-BMICalculation-result").innerHTML = "Your BMI is equal to " + imc.toFixed(2) + ". Note: " + etat;
 
             }
         }
@@ -245,10 +245,10 @@ function calculate_BMICalculation(){
             }
 
             if(hash.match(/-fr$/)) {
-                document.getElementById("result").innerHTML = "Votre IMC est egale à " + imc.toFixed(2) + ". Remarque: " + etat;
+                document.getElementById("page-BMICalculation-result").innerHTML = "Votre IMC est egale à " + imc.toFixed(2) + ". Remarque: " + etat;
             }
             else {
-                document.getElementById("result").innerHTML = "Your BMI is equal to " + imc.toFixed(2) + ". Note: " + etat;
+                document.getElementById("page-BMICalculation-result").innerHTML = "Your BMI is equal to " + imc.toFixed(2) + ". Note: " + etat;
 
             }
         }

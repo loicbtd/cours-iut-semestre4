@@ -27,6 +27,7 @@ function naviguer() {
         document.getElementById("action-navigate-BMICalculation").href = "#BMICalculation-fr";
         document.getElementById("action-navigate-FactorialCalculation").href = "#FactorialCalculation-fr";
         document.getElementById("action-navigate-FibonacciCalculation").href = "#FibonacciCalculation-fr";
+        document.getElementById("action-navigate-Converter").href = "#Converter-fr";
         document.getElementById("action-navigate-SiteDescription").href = "#SiteDescription-fr";
         document.getElementById("action-navigate-ContactUs").href = "#ContactUs-fr";
         document.getElementById("action-navigate-language").href = hash.replace(/-fr/i, "-en");        
@@ -53,6 +54,7 @@ function naviguer() {
         document.getElementById("action-navigate-BMICalculation").href = "#BMICalculation-en";
         document.getElementById("action-navigate-FactorialCalculation").href = "#FactorialCalculation-en";
         document.getElementById("action-navigate-FibonacciCalculation").href = "#FibonacciCalculation-en";
+        document.getElementById("action-navigate-Converter").href = "#Converter-en";
         document.getElementById("action-navigate-SiteDescription").href = "#SiteDescription-en";
         document.getElementById("action-navigate-ContactUs").href = "#ContactUs-en";
         document.getElementById("action-navigate-language").href = hash.replace(/-en/i, "-fr");
@@ -90,7 +92,6 @@ function naviguer() {
          // setup navbar events
          document.getElementById("action-button-navbar").addEventListener("click", calculate_BMICalculation);
          document.getElementById("clear-button-navbar").addEventListener("click", clear_BMICalculation);
-         // document.getElementById("print-button-navbar").addEventListener("click", print_BMICalculation);
 
         // fill innerHTML
         document.getElementById("page-BMICalculation-title").innerHTML = "BMI calculation";
@@ -114,21 +115,123 @@ function naviguer() {
 
     else if(hash.match(/^#Converter-fr/)){
         elementBody.innerHTML += pageConverter;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_Converter);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_Converter);
+
+        document.getElementById("page-Converter-title").innerHTML = "Convertisseur";
+        document.getElementById("page-Converter-label-value").innerHTML = "Valeur";
+        document.getElementById("page-Converter-label-type").innerHTML = "Type de conversion";
+        document.getElementById("page-Converter-button-invert").innerHTML = "Inverser";
+        document.getElementById("page-Converter-button-clear").innerHTML = "Effacer";
+        document.getElementById("page-Converter-button-calculate").innerHTML = "Convertir";
+        document.getElementById("page-Converter-dropdown-type").innerHTML = "\n" +
+            "<option id='page-Converter-type1' value='1' selected='selected'>cm -> inch</option>\n" +
+            "<option id='page-Converter-type2' value='2'>kg -> pound</option>\n" +
+            "<option id='page-Converter-type3' value='3'>km -> mile</option>\n" +
+            "<option id='page-Converter-type4' value='4'>°C -> °F</option>\n" +
+            "<option id='page-Converter-type5' value='5'>inch -> cm</option>\n" +
+            "<option id='page-Converter-type6' value='6'>pound -> kg</option>\n" +
+            "<option id='page-Converter-type7' value='7'>mile -> km</option>\n" +
+            "<option id='page-Converter-type8' value='8'>°F -> °C</option>\n";
+
+        // add event listener
+        document.getElementById("page-Converter-button-clear").addEventListener("click", clear_Converter);
+        document.getElementById("page-Converter-button-calculate").addEventListener("click", calculate_Converter);
+        document.getElementById("page-Converter-button-invert").addEventListener("click", invert_Converter);
     }
     else if(hash.match(/^#Converter-en/)){
         elementBody.innerHTML += pageConverter;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_Converter);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_Converter);
+
+        document.getElementById("page-Converter-title").innerHTML = "Converter";
+        document.getElementById("page-Converter-label-value").innerHTML = "Value";
+        document.getElementById("page-Converter-label-type").innerHTML = "Conversion type";
+        document.getElementById("page-Converter-button-invert").innerHTML = "Invert";
+        document.getElementById("page-Converter-button-clear").innerHTML = "Clear";
+        document.getElementById("page-Converter-button-calculate").innerHTML = "Convert";
+        document.getElementById("page-Converter-dropdown-type").innerHTML = "\n" +
+            "<option id='page-Converter-type1' value='1' selected='selected'>cm -> inch</option>\n" +
+            "<option id='page-Converter-type2' value='2'>kg -> pound</option>\n" +
+            "<option id='page-Converter-type3' value='3'>km -> mile</option>\n" +
+            "<option id='page-Converter-type4' value='4'>°C -> °F</option>\n" +
+            "<option id='page-Converter-type5' value='5'>inch -> cm</option>\n" +
+            "<option id='page-Converter-type6' value='6'>pound -> kg</option>\n" +
+            "<option id='page-Converter-type7' value='7'>mile -> km</option>\n" +
+            "<option id='page-Converter-type8' value='8'>°F -> °C</option>\n";
+
+        // add event listener
+        document.getElementById("page-Converter-button-clear").addEventListener("click", clear_Converter);
+        document.getElementById("page-Converter-button-calculate").addEventListener("click", calculate_Converter);
+        document.getElementById("page-Converter-button-invert").addEventListener("click", invert_Converter);
     }
     else if(hash.match(/^#FactorialCalculation-fr/)){
         elementBody.innerHTML += pageFactorialCalculation;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_FactorialCalculation);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_FactorialCalculation);
+
+        document.getElementById("page-FactorialCalculation-title").innerHTML = "Calcul factoriel";
+        document.getElementById("page-FactorialCalculation-label-value").innerHTML = "Valeur";
+        document.getElementById("page-FactorialCalculation-button-clear").innerHTML = "Effacer";
+        document.getElementById("page-FactorialCalculation-button-calculate").innerHTML = "Calculer";
+
+        // add event listener
+        document.getElementById("page-FactorialCalculation-button-clear").addEventListener("click", clear_FactorialCalculation);
+        document.getElementById("page-FactorialCalculation-button-calculate").addEventListener("click", calculate_FactorialCalculation);
     }
     else if(hash.match(/^#FactorialCalculation-en/)){
         elementBody.innerHTML += pageFactorialCalculation;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_FactorialCalculation);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_FactorialCalculation);
+
+        document.getElementById("page-FactorialCalculation-title").innerHTML = "Factorial Calculation";
+        document.getElementById("page-FactorialCalculation-label-value").innerHTML = "Value";
+        document.getElementById("page-FactorialCalculation-button-clear").innerHTML = "Clear";
+        document.getElementById("page-FactorialCalculation-button-calculate").innerHTML = "Calculate";
+
+        // add event listener
+        document.getElementById("page-FactorialCalculation-button-clear").addEventListener("click", clear_FactorialCalculation);
+        document.getElementById("page-FactorialCalculation-button-calculate").addEventListener("click", calculate_FactorialCalculation);
     }
     else if(hash.match(/^#FibonacciCalculation-fr/)){
         elementBody.innerHTML += pageFibonacciCalculation;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_FibonacciCalculation);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_FibonacciCalculation);
+
+        document.getElementById("page-FibonacciCalculation-title").innerHTML = "Calcul Fibonacci";
+        document.getElementById("page-FibonacciCalculation-label-value").innerHTML = "Valeur";
+        document.getElementById("page-FibonacciCalculation-button-clear").innerHTML = "Effacer";
+        document.getElementById("page-FibonacciCalculation-button-calculate").innerHTML = "Calculer";
+
+        // add event listener
+        document.getElementById("page-FibonacciCalculation-button-clear").addEventListener("click", clear_FibonacciCalculation);
+        document.getElementById("page-FibonacciCalculation-button-calculate").addEventListener("click", calculate_FibonacciCalculation);
     }
     else if(hash.match(/^#FibonacciCalculation-en/)){
         elementBody.innerHTML += pageFibonacciCalculation;
+
+        // setup navbar events
+        document.getElementById("action-button-navbar").addEventListener("click", calculate_FibonacciCalculation);
+        document.getElementById("clear-button-navbar").addEventListener("click", clear_FibonacciCalculation);
+
+        document.getElementById("page-FibonacciCalculation-title").innerHTML = "Fibonacci Calculation";
+        document.getElementById("page-FibonacciCalculation-label-value").innerHTML = "Value";
+        document.getElementById("page-FibonacciCalculation-button-clear").innerHTML = "Clear";
+        document.getElementById("page-FibonacciCalculation-button-calculate").innerHTML = "Calculate";
+
+        // add event listener
+        document.getElementById("page-FibonacciCalculation-button-clear").addEventListener("click", clear_FibonacciCalculation);
+        document.getElementById("page-FibonacciCalculation-button-calculate").addEventListener("click", calculate_FibonacciCalculation);
     }
     else if(hash.match(/^#SiteDescription-fr/)){
         elementBody.innerHTML += pageSiteDescription;

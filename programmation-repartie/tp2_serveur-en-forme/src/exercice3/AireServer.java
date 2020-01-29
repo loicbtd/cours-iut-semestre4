@@ -32,18 +32,21 @@ public class AireServer {
     }
 
     public void requestLoop(){
+
+
         try {
-            int requestNumber;
+            int nombre_de_formes = objectInputStream.readInt();
 
-            requestNumber = objectInputStream.readInt();
-
-            switch(requestNumber) {
-                case 1:
-                    processRequest1();
-                    break;
-                case 2:
-                    processRequest2();
-                    break;
+            for (int i = 0; i < nombre_de_formes; i++) {
+                int requestNumber = objectInputStream.readInt();
+                switch(requestNumber) {
+                    case 1:
+                        processRequest1();
+                        break;
+                    case 2:
+                        processRequest2();
+                        break;
+                }
             }
         } catch(IOException ignored){
         }

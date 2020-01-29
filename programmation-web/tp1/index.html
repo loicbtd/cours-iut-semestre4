@@ -69,7 +69,7 @@
     </form>
     <button id="page-BMICalculation-button-clear"></button>
     <button id="page-BMICalculation-button-calculate"></button>
-    <span id="result"></span>
+    <span id="page-BMICalculation-result"></span>
 </div>
 </script>
 
@@ -99,32 +99,52 @@
 
 <script type="text/html" id="page-Converter">
 <div class="container">
-    <h1>Convertisseur</h1>
-</div>
-</script>
-
-<script type="text/html" id="page-Converter-en">
-<div class="container">
-    <h1>Converter</h1>
+    <h1 id="page-Converter-title"></h1>
+    <form>
+        <div>
+            <label id="page-Converter-label-value" for="page-Converter-input-value"></label>
+            <input type="text" name="value" id="page-Converter-input-value"/>
+        </div>
+        <div>
+            <label id="page-Converter-label-type" for="page-Converter-dropdown-type"></label>
+            <select id="page-Converter-dropdown-type"></select>
+            <button id="page-Converter-button-invert"></button>
+        </div>
+    </form>
+    <button id="page-Converter-button-clear"></button>
+    <button id="page-Converter-button-calculate"></button>
+    <span id="page-Converter-result"></span>
 </div>
 </script>
 
 <script type="text/html" id="page-FactorialCalculation">
-<div class="container">
-    <h1>Calcul Factoriel</h1>
-</div>
-</script>
-
-<script type="text/html" id="page-FactorialCalculation-en">
-<div class="container">
-    <h1>Factrorial Calculation</h1>
-</div>
+    <div class="container">
+        <h1 id="page-FactorialCalculation-title"></h1>
+        <form>
+            <div>
+                <label id="page-FactorialCalculation-label-value" for="page-FactorialCalculation-input-value"></label>
+                <input type="text" name="value" id="page-FactorialCalculation-input-value"/>
+            </div>
+        </form>
+        <button id="page-FactorialCalculation-button-clear"></button>
+        <button id="page-FactorialCalculation-button-calculate"></button>
+        <span id="page-FactorialCalculation-result"></span>
+    </div>
 </script>
 
 <script type="text/html" id="page-FibonacciCalculation">
-<div class="container">
-    <h1>Calcul Fibonacci</h1>
-</div>
+    <div class="container">
+        <h1 id="page-FibonacciCalculation-title"></h1>
+        <form>
+            <div>
+                <label id="page-FibonacciCalculation-label-value" for="page-FibonacciCalculation-input-value"></label>
+                <input type="text" name="value" id="page-FibonacciCalculation-input-value"/>
+            </div>
+        </form>
+        <button id="page-FibonacciCalculation-button-clear"></button>
+        <button id="page-FibonacciCalculation-button-calculate"></button>
+        <span id="page-FibonacciCalculation-result"></span>
+    </div>
 </script>
 
 <script type="text/html" id="page-FibonacciCalculation-en">
