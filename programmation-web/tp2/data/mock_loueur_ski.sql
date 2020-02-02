@@ -1,4 +1,3 @@
-\COPY marque(nom, couleur_logo, slogan, date_creation) FROM './mockdata/marque.csv' DELIMITER ';' CSV;
-\COPY voiture(modele, couleur, puissance, annee, id_marque) FROM './mockdata/voiture.csv' DELIMITER ';' CSV;
-
-
+LOAD DATA LOCAL INFILE './mockdata/carte_reduction.csv' INTO TABLE carte_reduction FIELDS TERMINATED BY ';' (carte,remise);
+LOAD DATA LOCAL INFILE './mockdata/client.csv' INTO TABLE client FIELDS TERMINATED BY ';' (civilite,nom,prenom,adresse,code_postal,ville,id_carte_reduction);
+LOAD DATA LOCAL INFILE './mockdata/service.csv' INTO TABLE service FIELDS TERMINATED BY ';' (prestation,cout);

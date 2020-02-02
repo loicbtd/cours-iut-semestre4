@@ -1,0 +1,6 @@
+#!/bin/sh
+
+mysql -h vpsloic.loicbertrand.net -u iut -D programmation_web_tp2 -P 3310 --password=password < ./init_loueur_ski.sql
+echo "database initialized"
+mysql -h vpsloic.loicbertrand.net -u iut -D programmation_web_tp2 -P 3310 --password=password < ./mock_loueur_ski.sql
+echo "mock data succesfully loaded"

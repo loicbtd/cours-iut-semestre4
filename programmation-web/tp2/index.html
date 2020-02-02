@@ -9,9 +9,21 @@
 
 <script>
 function loadDoc() {
-    xmlHttpRequest = new XMLHttpRequest();
+    let xmlHttpRequest = new XMLHttpRequest();
+
+
+    xmlHttpRequest.onreadystatechange = function(str) {
+        if (this.readyState === 4 && this.status === 200) {
+            document.getElementById("txtHint").innerHTML = this.responseText;
+        }
+    };
+    xmlHttpRequest.open("GET", "getcustomer.php?q="+str, true);
+    xmlHttpRequest.send();
+
+
+
     xmlHttpRequest.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.readyState === 4 && this.status === 200) {
             document.getElementById("demo").innerHTML = this.responseText;
         }
     };
@@ -19,5 +31,7 @@ function loadDoc() {
     xmlHttpRequest.send();
 }
 </script>
+
+<script src="function.js"></script>
 </body>
 </html>
