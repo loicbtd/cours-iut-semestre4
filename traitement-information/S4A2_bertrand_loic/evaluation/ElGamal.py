@@ -1,75 +1,33 @@
-from math import sqrt
+import math
+import random
+import sympy
 
 
-def est_premier(nombre):
-    """ Tester si un nombre est premier
-    :param nombre: nombre premier
-    :return: True si le nombre est premier et False sinon
-    """
-    # si le nombre est inférieur à un, il ne peut pas être premier donc on retourne false
-    if nombre <= 1:
-        return False
-    # si le nombre est 2 ou 3, on sait qu'il est premier donc on retourne true
-    if nombre <= 3:
-        return True
-    # si le nombre est modulo 2 ou 3, on sait qu'il n'est pas premier puisqu'on a déjà exclu 2 et 3 précédement
-    if nombre % 2 == 0 or nombre % 3 == 0:
-        return False
-    # on
-    i = 5
-    while i * i <= nombre:
-        if nombre % i == 0 or nombre % (i + 2) == 0:
-            return False
-        i = i + 6
-    return True
+def generer_nombre_premier_aleatoire():
+    debut_plage_nombre = 100
+    fin_plage_nombres = 100000
+    nombres_premiers = [i for i in range(debut_plage_nombre, fin_plage_nombres) if sympy.isprime(i)]
+    return random.choice([i for i in nombres_premiers])
 
 
-def puissance(x, y, p):
-    res = 1
-    x = x % p
-    while y > 0:
-        if y & 1:
-            res = (res * x) % p
-        y = y >> 1
-        x = (x * x) % p
-    return res
-
-
-def trouver_facteurs_premiers(s, phi):
-    while phi % 2 == 0:
-        s.add(2)
-        phi = phi // 2
-
-    for i in range(3, int(sqrt(phi)), 2):
-        while phi % i == 0:
-            s.add(i)
-            phi = phi // i
-    if phi > 2:
-        s.add(phi)
-
-
-def trouver_primitive(nombre_premier):
-    
-    s = set()
-    if not est_premier(nombre_premier):
-        return -1
-    phi = nombre_premier - 1
-    trouver_facteurs_premiers(s, phi)
-    for r in range(2, phi + 1):
-        flag = False
-        for it in s:
-            if puissance(r, phi // it, nombre_premier) == 1:
-                flag = True
-                break
-        if not flag:
-            return r
+def trouver_racine_primitive(nombre_premier):
+    for i in range(1, nombre_premier):
+        racines = []
+        for k in range(1, nombre_premier):
+            racines.append(i ** k % nombre_premier)
+        if set(range(1, nombre_premier)).issubset(racines):
+            return i
     return -1
+
+
+def selectionner_a_dans_0_a_p_moins_2(p):
+    return random.choice(range(0, p - 1))
 
 
 def cles(p, g, a):
     A = g ** a % p
     publique = (p, g, A)
-    prive  = a
+    prive = a
     return publique, prive
 
 
@@ -87,18 +45,20 @@ def dechiffre(cryptogramme, publique, prive):
 
 
 def main():
-    print(trouver_primitive(809))
-    p = 23
-    g = 5
-    a = 20
-    (publique, prive) = cles(p, g, a)
-    b = 19
-    cryptogramme = chiffre(98, publique, b)
-    print(dechiffre(cryptogramme, publique, prive))
+
+    print(trouver_racine_primitive(521))
+    # p = generer_nombre_premier_aleatoire()
+    # g = trouver_racine_primitive(p)
+    # a = selectionner_a_dans_0_a_p_moins_2(p)
+    #
+    # (publique, prive) = cles(p, g, a)
+    # b = selectionner_a_dans_0_a_p_moins_2(p)
+    #
+    # cryptogramme = chiffre(98, publique, b)
+    # print(dechiffre(cryptogramme, publique, prive))
 
 
 main()
-
 
 # def generer_cle(p, g):
 #     """ Génèrer la clé
@@ -191,3 +151,38 @@ main()
 #             "3 : Déchiffrer un message\n"
 #         )
 #         choix = input()
+
+
+# def trouver_racine_primitive(nombre_premier):
+#     indicatrice_euler = trouver_indicatrice_euler(nombre_premier)
+#     facteurs_premiers = trouver_facteurs_premiers(indicatrice_euler)
+#     for facteur_premier in facteurs_premiers:
+#         for i in range(1, facteur_premier + 1):
+#             if facteur_premier * indicatrice_euler / nombre_premier * i % nombre_premier != 1:
+#                 break
+#             if i == facteur_premier:
+#                 return facteur_premier
+#     return 0
+
+
+def exponentiation_rapide(nombre, puissance):
+    if nombre == 0:
+        return 1
+    elif nombre % 2 == 0:
+        return exponentiation_rapide(nombre * nombre, puissance // 2)
+    else:
+        return nombre * exponentiation_rapide(nombre * nombre, puissance // 2)
+
+
+# def trouver_indicatrice_euler(nombre):
+#     return nombre - 1
+#
+#
+# def trouver_facteurs_premiers(nombre):
+#     if nombre == 1:
+#         return set([])
+#     else:
+#         for k in range(2, nombre + 1):
+#             if nombre % k == 0:
+#                 L = trouver_facteurs_premiers(nombre / k)
+#                 return L.union([k])
