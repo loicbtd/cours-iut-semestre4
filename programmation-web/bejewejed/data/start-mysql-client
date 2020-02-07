@@ -1,0 +1,13 @@
+#!/bin/sh
+
+main(){
+  if [ "$1" = "prod" ]; then
+    source ./.env
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT --password=$MYSQL_PASSWORD
+  else
+    source ./.env.dev
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT
+  fi
+}
+
+main "$@"

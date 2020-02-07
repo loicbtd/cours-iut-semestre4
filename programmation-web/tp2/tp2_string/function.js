@@ -350,6 +350,7 @@ function mettre_a_jour_donnees(){
     requete_commandes.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             commandes = transformer_chaine_en_vecteur(this.responseText, ',');
+            recuperer_commandes_client();
         }
     };
     requete_commandes.open("GET", "getcommande.php", true);
