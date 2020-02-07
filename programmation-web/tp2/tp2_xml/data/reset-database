@@ -1,0 +1,19 @@
+#!/bin/sh
+
+main(){
+  if [ "$1" = "prod" ]; then
+    source ./.env
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT --password=$MYSQL_PASSWORD < ./$MYSQL_INIT_FILE
+    echo "database initialized"
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT --password=$MYSQL_PASSWORD < ./$MYSQL_MOCK_FILE
+    echo "mock data succesfully loaded"
+  else
+    source ./.env.dev
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT < ./$MYSQL_INIT_FILE
+    echo "database initialized"
+    mysql -h $MYSQL_HOST -u $MYSQL_USER -D $MYSQL_DATABASE -P $MYSQL_PORT < ./$MYSQL_MOCK_FILE
+    echo "mock data succesfully loaded"
+  fi
+}
+
+main "$@"

@@ -1,0 +1,96 @@
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>TP2 - Web</title>
+</head>
+<body>
+<div style="display: flex" class="header">
+    <div style="width: 50%;" class="header-left">
+        <div style="width: 180px; font-weight: bold; background: gray;" class="message-club">
+            <span>ski club</span><br>
+            <span>à votre service</span>
+        </div>
+        <div>
+            <span>12 impasse des moulinet</span><br>
+            <span>90000 Belfort</span><br>
+            <span>03 84 56 47 89</span><br>
+            <span>06 54 89 57 23</span><br>
+        </div>
+    </div>
+    <div style="width: 50%; text-align: right;" class="header-right">
+        <span id="date"></span>
+        <div style="text-align: center; background: gray;">
+            <br>
+            <br>
+            <span style="font-weight: bold; font-size: xx-large">Facture</span>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <div style="margin-top: 50px; text-align: center;">
+            <label for="code-client">Votre code client</label>
+            <input type="text" name="code-client" id="code-client" style="text-align: center; padding: 0 20px 0 20px; margin-left: 50px; width: 150px;"/>
+        </div>
+        <div style="margin-top: 50px; text-align: center;">
+            <div id="zone-commandes"></div>
+        </div>
+        <div style="margin-top:50px; font-weight: bold; text-align: left">
+            <span id="civilite"></span><span id="nom"></span><span id="prenom"></span><br>
+            <span id="adresse"></span><br>
+            <span id="code-postal"></span><span id="ville"></span>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div>
+        <button id="bouton-ajouter-ligne">ajouter ligne</button>
+        <button id="bouton-supprimer-ligne">supprimer ligne</button>
+    </div>
+    <table style="margin-top: 20px; width: 80%; text-align: center; border-collapse: collapse;">
+        <thead>
+            <tr>
+                <th style="border: 1px solid black;" scope="col">code prestation</th>
+                <th style="border: 1px solid black;"scope="col">désignation</th>
+                <th style="border: 1px solid black;" scope="col">prix</th>
+                <th style="border: 1px solid black;" scope="col">quantite</th>
+                <th style="border: 1px solid black;" scope="col">montant</th>
+            </tr>
+        </thead>
+        <tbody id="tableau"></tbody>
+        <tfoot>
+            <tr>
+                <td style='border: none;' colspan='3'></td>
+                <td style='border: 1px solid black'>somme</td>
+                <td style='border: 1px solid black'><div id='somme' style="display: inline;">-</div> €</td>
+            </tr>
+            <tr>
+                <td style='border: none;' colspan='3'></td>
+                <td style='border: 1px solid black'>remise</td>
+                <td style='border: 1px solid black'><div id='remise' style="display: inline;">-</div> %</td>
+            </tr>
+            <tr>
+                <td style='border: none;' colspan='3'></td>
+                <td style='border: 1px solid black'>à régler</td>
+                <td style='border: 1px solid black'><div id='a-regler' style="display: inline;">-</div> €</td>
+            </tr>
+        </tfoot>
+    </table>
+    <button id="bouton-sauvegarder">sauvegarder</button>
+    <button id="bouton-creer-nouvelle-facture">créer nouvelle facture</button>
+    <div style='margin-top: 20px; text-align: center;'>
+        <span id='carte'></span>
+    </div>
+</div>
+
+<script src="function.js"></script>
+
+</body>
+</html>
+

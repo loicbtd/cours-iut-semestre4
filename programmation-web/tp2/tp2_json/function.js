@@ -7,6 +7,16 @@ function transformer_chaine_en_vecteur(chaine,separateur){
     return vecteur;
 }
 
+function transformer_json_en_vecteur(json_brut){
+    let json = JSON.parse(json_brut);
+
+    let tableau = Array();
+    for (let i = 0; i < json.length; i++) {
+        tableau.push(Object.values(json[i]));
+    }
+    return tableau;
+}
+
 function trouver_enregistrement_par_id(enregistrements, id){
     for (let i = 0; i < enregistrements.length; i++) {
         if (enregistrements[i][0] === id) {
@@ -238,6 +248,7 @@ function sauvegarder(){
     else {
         requete_post_commande.send("var="+body+"&num_commande="+num_commande);
     }
+    mettre_a_jour_donnees();
     alert("Sauvegardé avec succès !");
 }
 
@@ -326,6 +337,44 @@ function charger_commande() {
     supprimer_ligne();
 }
 
+function mettre_a_jour_donnees(){
+    let requete_client = new XMLHttpRequest();
+    requete_client.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            clients = transformer_json_en_vecteur(this.responseText);
+        }
+    };
+    requete_client.open("GET", "getclient.php", true);
+    requete_client.send();
+
+    let requete_service = new XMLHttpRequest();
+    requete_service.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            services = transformer_json_en_vecteur(this.responseText);
+        }
+    };
+    requete_service.open("GET", "getservice.php", true);
+    requete_service.send();
+
+    let requete_commandes = new XMLHttpRequest();
+    requete_commandes.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            commandes = transformer_json_en_vecteur(this.responseText);
+        }
+    };
+    requete_commandes.open("GET", "getcommande.php", true);
+    requete_commandes.send();
+
+    let requete_contient = new XMLHttpRequest();
+    requete_contient.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {
+            contient = transformer_json_en_vecteur(this.responseText);
+        }
+    };
+    requete_contient.open("GET", "getcontient.php", true);
+    requete_contient.send();
+}
+
 (function (){
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, '0');
@@ -342,7 +391,7 @@ function charger_commande() {
     let requete_client = new XMLHttpRequest();
     requete_client.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            clients = transformer_chaine_en_vecteur(this.responseText, ',');
+            clients = transformer_json_en_vecteur(this.responseText);
         }
     };
     requete_client.open("GET", "getclient.php", true);
@@ -351,7 +400,8 @@ function charger_commande() {
     let requete_service = new XMLHttpRequest();
     requete_service.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            services = transformer_chaine_en_vecteur(this.responseText, ',');
+            services = transformer_json_en_vecteur(this.responseText);
+            ajouter_ligne();
         }
     };
     requete_service.open("GET", "getservice.php", true);
@@ -360,8 +410,7 @@ function charger_commande() {
     let requete_commandes = new XMLHttpRequest();
     requete_commandes.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            commandes = transformer_chaine_en_vecteur(this.responseText, ',');
-            ajouter_ligne();
+            commandes = transformer_json_en_vecteur(this.responseText);
         }
     };
     requete_commandes.open("GET", "getcommande.php", true);
@@ -370,7 +419,7 @@ function charger_commande() {
     let requete_contient = new XMLHttpRequest();
     requete_contient.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
-            contient = transformer_chaine_en_vecteur(this.responseText, ',');
+            contient = transformer_json_en_vecteur(this.responseText);
         }
     };
     requete_contient.open("GET", "getcontient.php", true);
