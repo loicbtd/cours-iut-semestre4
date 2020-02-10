@@ -1,17 +1,21 @@
 package com.iutbm.example.iutbm.couchot.meetit_1.donnees;
 
+import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
 import com.iutbm.example.iutbm.couchot.meetit_1.Character;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CharacterDAO implements CharacterSQL {
 
     private static CharacterDAO instance = null;
-    protected List<Character> listeDevoir;
+    protected List<Character> listeCharacter;
 
     private BaseDeDonnees accesseurBaseDeDonnees;
 
@@ -22,79 +26,76 @@ public class CharacterDAO implements CharacterSQL {
         return instance;
     }
 
-    public DevoirDAO() {
+    public CharacterDAO() {
         this.accesseurBaseDeDonnees = BaseDeDonnees.getInstance();
-        listeDevoir = new ArrayList<>();
+        listeCharacter = new ArrayList<>();
     }
 
-    public List<Devoir> recupererListeDevoir() {
+    public List<Character> recupererListeCharacter(Context context) {
         Cursor curseur = accesseurBaseDeDonnees.getReadableDatabase()
-                .rawQuery(SQL_LISTER_DEVOIRS, null);
-        this.listeDevoir.clear();
+                .rawQuery(SQL_LISTER_CHARACTER, null);
+        this.listeCharacter.clear();
 
-        Devoir devoir;
+        Character character;
 
-        int indexId_devoir = curseur.getColumnIndex(Devoir.CLE_ID_DEVOIR);
-        int indexMatiere = curseur.getColumnIndex(Devoir.CLE_MATIERE);
-        int indexSujet = curseur.getColumnIndex(Devoir.CLE_SUJET);
-        int indexHoraire = curseur.getColumnIndex(Devoir.CLE_HORAIRE);
-        int indexAlarmeActive = curseur.getColumnIndex(Devoir.CLE_ALARME_ACTIVE);
+        int indexId_character = curseur.getColumnIndex(Character.CLE_ID_CHARACTER);
+        int indexFirstname = curseur.getColumnIndex(Character.CLE_FIRSTNAME);
+        int indexFamilyname = curseur.getColumnIndex(Character.CLE_FAMILYNAME);
+        int indexWeburl = curseur.getColumnIndex(Character.CLE_WEBURL);
+        int indexLatitude = curseur.getColumnIndex(Character.CLE_LATITUDE);
+        int indexLongitude = curseur.getColumnIndex(Character.CLE_LONGITUDE);
+//        int indexBmp = curseur.getColumnIndex(Character.CLE_BMP);
 
         for (curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()) {
-            int id_devoir = curseur.getInt(indexId_devoir);
-            String matiere = curseur.getString(indexMatiere);
-            String sujet = curseur.getString(indexSujet);
-            LocalDateTime horaire = LocalDateTime.parse(
-                    curseur.getString(indexHoraire),
-                    Devoir.FORMAT_DATE_STOCKAGE
-            );
-            boolean alarme_active = curseur.getInt(indexAlarmeActive) != 0;
-            devoir = new Devoir(id_devoir, matiere, sujet, horaire, alarme_active);
-            this.listeDevoir.add(devoir);
+            int id_character = curseur.getInt(indexId_character);
+            String firstname = curseur.getString(indexFirstname);
+            String familyname = curseur.getString(indexFamilyname);
+            URL weburl = null;
+            try {
+                weburl = new URL(curseur.getString(indexWeburl));
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            }
+            float latitude = curseur.getFloat(indexLatitude);
+            float longitude = curseur.getFloat(indexLongitude);
+//            String bmp_id = curseur.getString(indexBmp);
+//            // TODO: remplacer "couturier" par bmp_id
+//            Drawable drawable = context.getResources().getDrawable(context.getResources().getIdentifier("couturier", "drawable", context.getPackageName()));
+//            Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();
+//
+            character = new Character(id_character, firstname, familyname, weburl, latitude, longitude);
+            this.listeCharacter.add(character);
         }
-        return listeDevoir;
+        return listeCharacter;
     }
 
-//    @RequiresApi(api = Build.VERSION_CODES.O)
-//    public List<HashMap<String, String>> recupererListeDevoirPourAdapteur() {
-//        List<HashMap<String, String>> listeDevoirPourAdapteur =
-//                new ArrayList<>();
-//
-//        recupererListeDevoir();
-//
-//        for (Devoir devoir : listeDevoir) {
-//            listeDevoirPourAdapteur.add(devoir.obtenirDevoirPourAdapteur());
-//        }
-//        return listeDevoirPourAdapteur;
-//    }
-
-    public void ajouterDevoir(Devoir devoir) {
+    public void ajouterCharacter(Character character) {
         SQLiteDatabase sqLiteDatabase = accesseurBaseDeDonnees.getWritableDatabase();
-        SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(SQL_INSERER_DEVOIR);
-        sqLiteStatement.bindString(1, devoir.getMatiere());
-        sqLiteStatement.bindString(2, devoir.getSujet());
-        sqLiteStatement.bindString(3,
-                devoir.getHoraire().format(Devoir.FORMAT_DATE_STOCKAGE));
-        sqLiteStatement.bindString(4, ""+(devoir.isAlarme_active() ? 1 : 0));
+        SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(SQL_INSERER_CHARACTER);
+        sqLiteStatement.bindString(1, character.getFirstname());
+        sqLiteStatement.bindString(2, character.getFamilyname());
+        sqLiteStatement.bindString(3, character.getWeburl().toString());
+        sqLiteStatement.bindDouble(4, character.getLatitude());
+        sqLiteStatement.bindDouble(5, character.getLongitude());
+//        sqLiteStatement.bindString(6, character.getBmp());
         sqLiteStatement.execute();
     }
 
-    public Devoir chercherDevoirParIdDevoir(int id_devoir) {
-        for(Devoir devoirRecherche : this.listeDevoir) {
-            if(devoirRecherche.getId_devoir() == id_devoir) return devoirRecherche;
+    public Character chercherCharacterParIdCharacter(int id_character) {
+        for(Character characterRecherche : this.listeCharacter) {
+            if(characterRecherche.getIdCharacter() == id_character) return characterRecherche;
         }
         return null;
     }
 
     public void modifierCharacter(Character character) {
         SQLiteDatabase sqLiteDatabase = accesseurBaseDeDonnees.getWritableDatabase();
-        SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(SQL_MODIFIER_DEVOIR);
-        sqLiteStatement.bindString(1, character.getMatiere());
-        sqLiteStatement.bindString(2, character.getSujet());
-        sqLiteStatement.bindString(3,
-                character.getHoraire().format(Devoir.FORMAT_DATE_STOCKAGE));
-        sqLiteStatement.bindString(4, ""+(character.isAlarme_active() ? 1 : 0));
-        sqLiteStatement.bindString(5, ""+character.getId_devoir());
+        SQLiteStatement sqLiteStatement = sqLiteDatabase.compileStatement(SQL_MODIFIER_CHARACTER);
+        sqLiteStatement.bindString(1, character.getFirstname());
+        sqLiteStatement.bindString(2, character.getFamilyname());
+        sqLiteStatement.bindString(3, character.getWeburl().toString());
+        sqLiteStatement.bindDouble(4, character.getLatitude());
+        sqLiteStatement.bindDouble(5, character.getLongitude());
         sqLiteStatement.execute();
     }
 }

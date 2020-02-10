@@ -15,6 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.iutbm.example.iutbm.couchot.meetit_1.donnees.BaseDeDonnees;
+import com.iutbm.example.iutbm.couchot.meetit_1.donnees.CharacterDAO;
+
+import java.net.ContentHandler;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -52,6 +57,8 @@ public class MyDataFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
+    private CharacterDAO characterDAO;
+
     public MyDataFragment() {
         // Required empty public constructor
     }
@@ -81,11 +88,6 @@ public class MyDataFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-
-
-
-
-
     }
 
     @Override
@@ -97,9 +99,28 @@ public class MyDataFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(),LinearLayoutManager.VERTICAL));
+
+
+        // TODO: chargement des characters
+//        prepareCharacterData();
+        BaseDeDonnees.getInstance(getContext());
+        characterDAO = CharacterDAO.getInstance();
+
+        Character c1, c2, c3;
+        try {
+            c1 = new Character("Jean-François", "Couchot", new URL("http://members.femto-st.fr/jf-couchot/fr"), 47.642900f, 6.840027f);
+            c2 = new Character("Raphaël", "Couturier", new URL("http://members.femto-st.fr/raphael-couturier/fr"), 47.659518f, 6.813337f);
+            c3 = new Character("Stéphane","Domas", new URL("http://info.iut-bm.univ-fcomte.fr/staff/sdomas/"), 47.6387143f, 6.8370225f);
+            characterDAO.ajouterCharacter(c1);
+            characterDAO.ajouterCharacter(c2);
+            characterDAO.ajouterCharacter(c3);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        characterList = characterDAO.recupererListeCharacter(getContext());
         recyclerView.setAdapter(new ChraracterListAdapter(characterList));
 
-        prepareCharacterData();
         return root;
     }
 

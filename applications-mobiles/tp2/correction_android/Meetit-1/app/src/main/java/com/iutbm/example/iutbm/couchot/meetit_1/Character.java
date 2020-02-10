@@ -4,11 +4,16 @@ import android.graphics.Bitmap;
 
 import java.net.URL;
 
-/**
- * Created by couchot on 21/11/16.
- */
-
 public class Character {
+
+    public static final String CLE_ID_CHARACTER= "id_character";
+    public static final String CLE_FIRSTNAME = "firstname";
+    public static final String CLE_FAMILYNAME = "familyname";
+    public static final String CLE_WEBURL = "weburl";
+    public static final String CLE_LATITUDE = "latitude";
+    public static final String CLE_LONGITUDE = "longitude";
+    public static final String CLE_BMP = "bmp";
+
     private int idCharacter;
     private String firstname;
     private String familyname ;
@@ -25,6 +30,15 @@ public class Character {
         this.latitude = latitude;
         this.longitude = longitude;
         this.bmp = bmp;
+    }
+
+    public Character(int idCharacter, String firstname, String familyname, URL weburl, float latitude, float longitude) {
+        this.idCharacter = idCharacter;
+        this.firstname = firstname;
+        this.familyname = familyname;
+        this.weburl = weburl;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public Character(String firstname, String familyname, URL weburl, float latitude, float longitude) {
