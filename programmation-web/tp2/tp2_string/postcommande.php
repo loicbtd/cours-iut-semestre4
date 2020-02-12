@@ -49,44 +49,46 @@ const SQL_INSERER_CONTIENT_COMMANDE = "
 ";
 
 const SQL_SUPPRIMER_COMMANDE = "
-    DELETE FROM commande WHERE mum_commande=?;
+    DELETE FROM commande WHERE num_commande=?;
 ";
 
 const SQL_SUPPRIMER_CONTIENT = "
     DELETE FROM contient WHERE num_commande=?;
 ";
 
-if (isset($_POST['num_commande'])) {
-    $num_commande = $_POST['num_commande'];
-    echo("update order number; ".$num_commande);
+if (isset($_POST['commande'])) {
+    $num_commande = $_POST['commande'];
+    echo("update order number ".$num_commande."\n");
     // si la commande existe, on la supprime
     $statement = $connection->prepare(SQL_SUPPRIMER_COMMANDE);
     $statement->execute([$num_commande]);
+    print_r($statement->errorInfo());
+
 
     $statement = $connection->prepare(SQL_SUPPRIMER_CONTIENT);
     $statement->execute([$num_commande]);
-//    print_r($statement->errorInfo());
+    print_r($statement->errorInfo());
 
     $statement = $connection->prepare(SQL_INSERER_NOUVELLE_COMMANDE_AVEC_NUM_COMMANDE);
     $statement->execute([$num_commande, $prix_total, $date_commande, $code_client]);
-//    print_r($statement->errorInfo());
+    print_r($statement->errorInfo());
 }
 else {
     $statement = $connection->prepare(SQL_INSERER_NOUVELLE_COMMANDE);
     $statement->execute([$prix_total, $date_commande, $code_client]);
-//    print_r($statement->errorInfo());
+    print_r($statement->errorInfo());
 
     $statement = $connection->prepare(SQL_RECUPERER_ID_DERNIERE_COMMANDE);
     $statement->execute();
-//    print_r($statement->errorInfo());
+    print_r($statement->errorInfo());
     $num_commande = $statement->fetch(PDO::FETCH_ASSOC)['num_commande'][0];
 
-    echo("create order number; ".$num_commande);
+    echo("create order number ".$num_commande);
 
 }
 
 foreach ($contient as $element) {
     $statement = $connection->prepare(SQL_INSERER_CONTIENT_COMMANDE);
     $statement->execute([$num_commande, $element[0], $element[1]]);
-//    print_r($statement->errorInfo());
+    print_r($statement->errorInfo());
 }

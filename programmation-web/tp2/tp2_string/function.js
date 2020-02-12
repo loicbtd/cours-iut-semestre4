@@ -183,6 +183,7 @@ function creer_nouvelle_facture(){
     }
     ajouter_ligne();
     mettre_a_jour_a_regler();
+    mettre_a_jour_donnees();
 }
 
 function sauvegarder(){
@@ -232,14 +233,16 @@ function sauvegarder(){
         }
     };
     let num_commande = document.getElementById("liste-deroulante-commande").value;
+    // console.log("valeur liste deroulante: "+num_commande);
     if (num_commande === "-1"){
         requete_post_commande.send("var="+body);
     }
     else {
-        requete_post_commande.send("var="+body+"&num_commande="+num_commande);
+        requete_post_commande.send("var="+body+"&commande="+num_commande);
     }
     mettre_a_jour_donnees();
     alert("Sauvegardé avec succès !");
+    creer_nouvelle_facture();
 }
 
 function recuperer_commandes_client(){
@@ -270,15 +273,18 @@ function recuperer_commandes_client(){
 }
 
 function charger_commande() {
-    let element_commande_courante = document.getElementById("option-commande-courante");
-    if (element_commande_courante != null){
-        element_commande_courante.parentNode.removeChild(element_commande_courante);
-    }
-
-    creer_nouvelle_facture();
+    // let element_commande_courante = document.getElementById("option-commande-courante");
+    // if (element_commande_courante != null){
+    //     element_commande_courante.parentNode.removeChild(element_commande_courante);
+    // }
 
     // on recupere le numero de la commande
     let num_commande = document.getElementById("liste-deroulante-commande").value;
+
+    if (num_commande === '-1'){
+        creer_nouvelle_facture();
+        return
+    }
 
     // on recupere le contenu de la commande
     let contient_commande_courante = Array();
@@ -289,7 +295,7 @@ function charger_commande() {
     }
 
     // on recuperer la liste des services
-    let services_elements_option;
+    let services_elements_option = "";
     services_elements_option += "<option value='0'>vide  </option>";
     for (let i = 0; i < services.length; i++) {
         services_elements_option += "<option value='" + services[i][0] + "'>" + services[i][1] + "</option>";

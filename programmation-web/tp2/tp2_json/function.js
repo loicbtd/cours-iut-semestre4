@@ -250,6 +250,7 @@ function sauvegarder(){
     }
     mettre_a_jour_donnees();
     alert("Sauvegardé avec succès !");
+    creer_nouvelle_facture();
 }
 
 function recuperer_commandes_client(){
@@ -280,15 +281,18 @@ function recuperer_commandes_client(){
 }
 
 function charger_commande() {
-    let element_commande_courante = document.getElementById("option-commande-courante");
-    if (element_commande_courante != null){
-        element_commande_courante.parentNode.removeChild(element_commande_courante);
-    }
+    // let element_commande_courante = document.getElementById("option-commande-courante");
+    // if (element_commande_courante != null){
+    //     element_commande_courante.parentNode.removeChild(element_commande_courante);
+    // }
 
-    creer_nouvelle_facture();
 
     // on recupere le numero de la commande
     let num_commande = document.getElementById("liste-deroulante-commande").value;
+    if (num_commande === '-1'){
+        creer_nouvelle_facture();
+        return
+    }
 
     // on recupere le contenu de la commande
     let contient_commande_courante = Array();
