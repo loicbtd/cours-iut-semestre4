@@ -43,19 +43,48 @@ def dechiffre(cryptogramme, publique, prive):
     (B, c) = cryptogramme
     return B ** (p - 1 - a) * c % p
 
+# def demarrer_outil_generation_cle():
+#     import os
+#     from sys import platform
+#     if platform == "linux" or platform == "linux2":
+#         clear = lambda: os.system('clear')
+#     elif platform == "win32":
+#         clear = lambda: os.system('cls')
+#     else:
+#         clear = lambda: print("clear not supported on your system")
+#
+#     choix_possibles = ['1', '2', '3']
+#     print(
+#         "### OUTIL EL GAMAL ###\n"
+#         "1 : Générer une clé\n"
+#         "1 : Générer une clé\n"
+#         "2 : Chiffrer un message\n"
+#         "3 : Déchiffrer un message\n"
+#     )
+#     choix = input()
+#     while choix not in choix_possibles:
+#         clear()
+#         print("Erreur: Merci de saisir un choix parmis ceux proposer\n\n")
+#         print(
+#             "### OUTIL EL GAMAL ###\n"
+#             "1 : Générer une clé\n"
+#             "2 : Chiffrer un message\n"
+#             "3 : Déchiffrer un message\n"
+#         )
+#         choix = input()
+
+
 
 def main():
+    p = generer_nombre_premier_aleatoire()
+    g = trouver_racine_primitive(p)
+    a = selectionner_a_dans_0_a_p_moins_2(p)
 
-    print(trouver_racine_primitive(521))
-    # p = generer_nombre_premier_aleatoire()
-    # g = trouver_racine_primitive(p)
-    # a = selectionner_a_dans_0_a_p_moins_2(p)
-    #
-    # (publique, prive) = cles(p, g, a)
-    # b = selectionner_a_dans_0_a_p_moins_2(p)
-    #
-    # cryptogramme = chiffre(98, publique, b)
-    # print(dechiffre(cryptogramme, publique, prive))
+    (publique, prive) = cles(p, g, a)
+    b = selectionner_a_dans_0_a_p_moins_2(p)
+
+    cryptogramme = chiffre(98, publique, b)
+    print(dechiffre(cryptogramme, publique, prive))
 
 
 main()
@@ -123,34 +152,7 @@ main()
 #     return m
 #
 #
-# def demarrer_outil_generation_cle():
-#     import os
-#     from sys import platform
-#     if platform == "linux" or platform == "linux2":
-#         clear = lambda: os.system('clear')
-#     elif platform == "win32":
-#         clear = lambda: os.system('cls')
-#     else:
-#         clear = lambda: print("clear not supported on your system")
-#
-#     choix_possibles = ['1', '2', '3']
-#     print(
-#         "### OUTIL EL GAMAL ###\n"
-#         "1 : Générer une clé\n"
-#         "2 : Chiffrer un message\n"
-#         "3 : Déchiffrer un message\n"
-#     )
-#     choix = input()
-#     while choix not in choix_possibles:
-#         clear()
-#         print("Erreur: Merci de saisir un choix parmis ceux proposer\n\n")
-#         print(
-#             "### OUTIL EL GAMAL ###\n"
-#             "1 : Générer une clé\n"
-#             "2 : Chiffrer un message\n"
-#             "3 : Déchiffrer un message\n"
-#         )
-#         choix = input()
+
 
 
 # def trouver_racine_primitive(nombre_premier):
@@ -165,13 +167,13 @@ main()
 #     return 0
 
 
-def exponentiation_rapide(nombre, puissance):
-    if nombre == 0:
-        return 1
-    elif nombre % 2 == 0:
-        return exponentiation_rapide(nombre * nombre, puissance // 2)
-    else:
-        return nombre * exponentiation_rapide(nombre * nombre, puissance // 2)
+# def exponentiation_rapide(nombre, puissance):
+#     if nombre == 0:
+#         return 1
+#     elif nombre % 2 == 0:
+#         return exponentiation_rapide(nombre * nombre, puissance // 2)
+#     else:
+#         return nombre * exponentiation_rapide(nombre * nombre, puissance // 2)
 
 
 # def trouver_indicatrice_euler(nombre):

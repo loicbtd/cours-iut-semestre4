@@ -1,0 +1,1 @@
+glpsol --cpxlp $INPUT_FILE -o $OUTPUT_FILE
