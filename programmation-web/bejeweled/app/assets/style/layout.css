@@ -42,20 +42,36 @@ html{
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+    align-items: center;
+    text-align: center;
+    vertical-align: center;
 }
 
-.col-50, .col-100 {
+.col-10, .col-50, .col-90 .col-100 {
     text-align: center;
     position: relative;
     width: 100%;
     padding-right: 15px;
     padding-left: 15px;
+    align-items: center;
+}
+
+.col-10 {
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
 }
 
 .col-50 {
     -ms-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
+}
+
+.col-90 {
+    -ms-flex: 0 0 90%;
+    flex: 0 0 90%;
+    max-width: 90%;
 }
 
 .col-100 {

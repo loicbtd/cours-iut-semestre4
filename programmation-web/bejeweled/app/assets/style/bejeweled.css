@@ -1,3 +1,16 @@
-body {
-    background-image: url("../../resources/themes/unicorn/background.png");
+#container-header {
+    height: 250px;
+}
+
+#container-grid {
+    width: 90%;
+    height: 100%;
+}
+
+#container-progressbar {
+    height: 250px;
+}
+
+#progressbar {
+    width: 90%;
 }
