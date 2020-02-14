@@ -34,38 +34,13 @@ function start_game(){
     add_event_listener_on_grid();
 }
 
-function remove_good_sequences(){
-    let comparaisonList;
-
-    for (let y = 0; y < grid_size_y; y++) {
-        for (let x = 0; x < grid_size_x; x++) {
-            if (x + number_of_cards_to_align <= grid_size_x ){
-                // test if row is good
-                comparaisonList = Array();
-                for (let pos = 0; pos < number_of_cards_to_align; pos++) {
-                    comparaisonList.push(model[y][x+pos]);
-                }
-                // if row is good put null_value on it
-                if (comparaisonList.every( (val, i, arr) => val === arr[0] )){
-                    for (let pos = 0; pos < number_of_cards_to_align; pos++) {
-                        model[y][x+pos] = null_value;
-                    }
-                }
-            }
-            if (y + number_of_cards_to_align <= grid_size_y){
-                // test if column is good
-                comparaisonList = Array();
-                for (let pos = 0; pos < number_of_cards_to_align; pos++) {
-                    comparaisonList.push(model[y+pos][x]);
-                }
-                // if column is good put null_value on it
-                if (comparaisonList.every( (val, i, arr) => val === arr[0] )){
-                    for (let pos = 0; pos < number_of_cards_to_align; pos++) {
-                        model[y+pos][x] = null_value;
-                    }
-                }
-            }
-        }
+function tag_cards_in_good_sequences(good_sequences_card_coordinates){
+    let x;
+    let y;
+    for (let i = 0; i < good_sequences_card_coordinates.length; i++) {
+        y = good_sequences_card_coordinates[i][0]-1;
+        x = good_sequences_card_coordinates[i][1]-1;
+        model[y][x] = null_value;
     }
 }
 
@@ -84,20 +59,21 @@ function get_coordinates_of_cards_in_good_sequence(){
                 coordinates_of_cards = Array();
                 position = 0;
                 // manually do one loop iteration to initialize previous card value
-                coordinates_of_cards.push([y][x+position]);
-                previous_card_value = model[y][x+position];
+                coordinates_of_cards.push([y+1, x+position+1]);
+                previous_card_value = model[y][x+position+1];
                 position ++;
                 // while we are sure to not overstep the end of the grid
                 while (position + x + number_of_cards_to_align < grid_size_x + 1){
                     current_card_value = model[y][x+position]; // set the current card value
                     if(current_card_value !== previous_card_value) break; // if all the values in the sequence are equals the continue, else stop loop. (NB:  For [A, B, C], if A=B and B=C then A=B=C)
-                    coordinates_of_cards.push([y][x+position]); // add the coordinate [y, x] to the list of coordinates
+                    coordinates_of_cards.push([y+1, x+position+1]); // add the coordinate [y, x] to the list of coordinates
                     previous_card_value = current_card_value; // set the previous card value for the next loop iteration
                     position++; // increment position for the next loop iteration
                 }
                 // At the end of the loop, if the length of memorized coordinates is equal or higher than number_of_cards_to_align add them to
                 if (coordinates_of_cards.length >= number_of_cards_to_align){
-                    coordinates_of_cards_in_good_sequence.concat(coordinates_of_cards);
+                    console.log(coordinates_of_cards);
+                    coordinates_of_cards_in_good_sequence = coordinates_of_cards_in_good_sequence.concat(coordinates_of_cards);
                 }
             }
             // if the current position allows to find good sequences before the end of the column
@@ -105,14 +81,14 @@ function get_coordinates_of_cards_in_good_sequence(){
                 coordinates_of_cards = Array();
                 position = 0;
                 // manually do one loop iteration to initialize previous card value
-                coordinates_of_cards.push([y+position][x]);
+                coordinates_of_cards.push([y+position+1, x+1]);
                 previous_card_value = model[y+position][x];
                 position ++;
                 // while we are sure to not overstep the end of the grid
                 while (position + y + number_of_cards_to_align < grid_size_y + 1){
                     current_card_value = model[y+position][x]; // set the current card value
                     if(current_card_value !== previous_card_value) break; // if all the values in the sequence are equals the continue, else stop loop. (NB:  For [A, B, C], if A=B and B=C then A=B=C)
-                    coordinates_of_cards.push([y+position][x]); // add the coordinate [y, x] to the list of coordinates
+                    coordinates_of_cards.push([y+position+1, x+1]); // add the coordinate [y, x] to the list of coordinates
                     previous_card_value = current_card_value; // set the previous card value for the next loop iteration
                     position++; // increment position for the next loop iteration
                 }
@@ -123,38 +99,55 @@ function get_coordinates_of_cards_in_good_sequence(){
             }
         }
     }
+    console.log("return: " + coordinates_of_cards_in_good_sequence);
     return coordinates_of_cards_in_good_sequence;
 }
 
-function fill_empty_cells(){
-    for (let y = 0; y < model.length; y++) {
+function drop_cards(){
+    for (let y = model.length - 1; y < 0 ; y--) {
         for (let x = 0; x < model[y].length; x++) {
-            if (model[y][x] === -1){
-                let new_value;
-                do {
-                    new_value = (Math.random() * (number_of_cards - 1) + 1).toFixed(0);
-                } while (new_value === model[y][x]);
-                model[y][x] = new_value;
+            if (model[y][x] === null_value){
+                model[y][x] = model[y-1][x];
+                model[y-1][x] = null_value;
+            }
+        }
+    }
+    // We suppose that grid_size_y > 3
+    // let y;
+    // let x;
+
+    // y = model.length - 1;
+    // for (x = 0; x < model[y].length; x++) {
+    //     if (model[y][x] === null_value){
+    //         model[y][x] = model[y-1][x];
+    //         model[y-1][x] = null_value;
+    //     }
+    // }
+
+}
+
+function fill_null_cards(){
+    for (let y = 0; y < model.length ; y++) {
+        for (let x = 0; x < model[y].length; x++) {
+            if (model[y][x] === null_value){
+                model[y][x] = (Math.random() * (number_of_cards - 1) + 1).toFixed(0);
             }
         }
     }
 }
 
 function new_model(){
-    model = Array();
-    let line_tmp;
-    for (let y = 0; y < grid_size_y; y++) {
-        line_tmp = Array();
-        for (let x = 0; x < grid_size_x; x++) {
-            line_tmp.push((Math.random() * (number_of_cards - 1) + 1).toFixed(0));
+    do {
+        model = Array();
+        let line_tmp;
+        for (let y = 0; y < grid_size_y; y++) {
+            line_tmp = Array();
+            for (let x = 0; x < grid_size_x; x++) {
+                line_tmp.push((Math.random() * (number_of_cards - 1) + 1).toFixed(0));
+            }
+            model.push(line_tmp);
         }
-        model.push(line_tmp);
-    }
-
-    while (get_coordinates_of_cards_in_good_sequence().length !== 0){
-        remove_good_sequences();
-        fill_empty_cells();
-    }
+    } while (get_coordinates_of_cards_in_good_sequence().length !== 0);
 }
 
 function new_grid(){
@@ -203,6 +196,15 @@ function permute_cards(event){
 
     let second_card_x = parseInt(second_card.match(/\d/g)[0]);
     let second_card_y = parseInt(second_card.match(/\d/g)[1]);
+    first_card = null;
+    second_card = null;
+
+    // if the two selected cards
+    if (second_card_x > first_card_x + 1 || second_card_x < first_card_x - 1 ||
+        second_card_y > first_card_y + 1 || second_card_y < first_card_y - 1) {
+        alert("Vous devez sélectionner 2 cartes l'une à côté de l'autre.");
+        return;
+    }
 
     let first_card_value = parseInt(model[first_card_x][first_card_y]);
     let second_card_value = parseInt(model[second_card_x][second_card_y]);
@@ -211,19 +213,22 @@ function permute_cards(event){
     model[first_card_x][first_card_y] = second_card_value;
     model[second_card_x][second_card_y] = first_card_value;
 
-    if (get_coordinates_of_cards_in_good_sequence() === 0){
+    let good_sequences_card_coordinates = get_coordinates_of_cards_in_good_sequence();
+
+    if (good_sequences_card_coordinates.length === 0){
         model = saved_model;
+        return;
     }
 
-    remove_good_sequences();
-    fill_empty_cells();
+    tag_cards_in_good_sequences(good_sequences_card_coordinates);
+    drop_cards();
+    fill_null_cards();
     update_grid();
 
     // console.log(" first card | " + first_card + " | row: " + first_card.match(/\d/g)[0] + " | col: " + first_card.match(/\d/g)[1]);
     // console.log( " second card | " + second_card + " | row: " + second_card.match(/\d/g)[0] + " | col: " + second_card.match(/\d/g)[1]);
 
-    first_card = null;
-    second_card = null;
+
 }
 
 function display_high_scores(){
@@ -235,7 +240,5 @@ function display_high_scores(){
 2. mouvement
 
 3. test
-
-
 
  */
