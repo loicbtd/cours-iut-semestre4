@@ -1,16 +1,19 @@
-#container-header {
-    height: 250px;
+/*#container-header {*/
+/*    height: 250px;*/
+/*}*/
+
+/*#container-grid {*/
+/*    height: 100%;*/
+/*}*/
+
+/*#container-progressbar {*/
+/*    height: 250px;*/
+/*}*/
+
+.bejeweled-info {
+    width: 200px;
 }
 
-#container-grid {
-    width: 90%;
-    height: 100%;
-}
-
-#container-progressbar {
-    height: 250px;
-}
-
-#progressbar {
-    width: 90%;
+.bejeweled-button {
+    width: 200px;
 }

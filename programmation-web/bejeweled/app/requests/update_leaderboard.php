@@ -24,28 +24,8 @@ $connection = new PDO(
     BDD_usager,
     BDD_mot_de_passe);
 
-const SQL_INSERER_NOUVELLE_COMMANDE = "
-    INSERT INTO commande(prix_total,date_commande,code_client) VALUES (?,?,?);
-";
-
-const SQL_INSERER_NOUVELLE_COMMANDE_AVEC_NUM_COMMANDE = "
-    INSERT INTO commande(num_commande, prix_total,date_commande,code_client) VALUES (?,?,?,?);
-";
-
-const SQL_RECUPERER_ID_DERNIERE_COMMANDE = "
-    SELECT max(num_commande) as num_commande FROM commande;
-";
-
-const SQL_INSERER_CONTIENT_COMMANDE = "
-    INSERT INTO contient(num_commande,code_produit,quantite) VALUES (?,?,?);
-";
-
-const SQL_SUPPRIMER_COMMANDE = "
-    DELETE FROM commande WHERE num_commande=?;
-";
-
-const SQL_SUPPRIMER_CONTIENT = "
-    DELETE FROM contient WHERE num_commande=?;
+const SQL_METTRE_A_JOUR_LEADERBOARD = "
+    UPDATE INTO commande(,code_client) VALUES (?,?,?);
 ";
 
 if (isset($_POST['num_commande'])) {
