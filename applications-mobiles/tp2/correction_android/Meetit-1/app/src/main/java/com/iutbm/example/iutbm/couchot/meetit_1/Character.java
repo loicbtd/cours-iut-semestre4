@@ -20,9 +20,9 @@ public class Character {
     private URL weburl;
     private float latitude ;
     private float longitude ;
-    private Bitmap bmp;
+    private String bmp;
 
-    public Character(int idCharacter, String firstname, String familyname, URL weburl, float latitude, float longitude, Bitmap bmp) {
+    public Character(int idCharacter, String firstname, String familyname, URL weburl, float latitude, float longitude, String bmp) {
         this.idCharacter = idCharacter;
         this.firstname = firstname;
         this.familyname = familyname;
@@ -73,7 +73,7 @@ public class Character {
         return longitude;
     }
 
-    public Bitmap getBmp() {
+    public String getBmp() {
         return bmp;
     }
 }

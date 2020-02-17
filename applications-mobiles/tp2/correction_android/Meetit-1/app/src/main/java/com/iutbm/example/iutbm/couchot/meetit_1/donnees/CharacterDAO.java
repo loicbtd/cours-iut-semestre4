@@ -44,7 +44,7 @@ public class CharacterDAO implements CharacterSQL {
         int indexWeburl = curseur.getColumnIndex(Character.CLE_WEBURL);
         int indexLatitude = curseur.getColumnIndex(Character.CLE_LATITUDE);
         int indexLongitude = curseur.getColumnIndex(Character.CLE_LONGITUDE);
-//        int indexBmp = curseur.getColumnIndex(Character.CLE_BMP);
+        int indexBmp = curseur.getColumnIndex(Character.CLE_BMP);
 
         for (curseur.moveToFirst(); !curseur.isAfterLast(); curseur.moveToNext()) {
             int id_character = curseur.getInt(indexId_character);
@@ -58,12 +58,12 @@ public class CharacterDAO implements CharacterSQL {
             }
             float latitude = curseur.getFloat(indexLatitude);
             float longitude = curseur.getFloat(indexLongitude);
-//            String bmp_id = curseur.getString(indexBmp);
+            String bmp = curseur.getString(indexBmp);
 //            // TODO: remplacer "couturier" par bmp_id
 //            Drawable drawable = context.getResources().getDrawable(context.getResources().getIdentifier("couturier", "drawable", context.getPackageName()));
 //            Bitmap bmp = ((BitmapDrawable) drawable).getBitmap();
 //
-            character = new Character(id_character, firstname, familyname, weburl, latitude, longitude);
+            character = new Character(id_character, firstname, familyname, weburl, latitude, longitude, bmp);
             this.listeCharacter.add(character);
         }
         return listeCharacter;
@@ -77,7 +77,7 @@ public class CharacterDAO implements CharacterSQL {
         sqLiteStatement.bindString(3, character.getWeburl().toString());
         sqLiteStatement.bindDouble(4, character.getLatitude());
         sqLiteStatement.bindDouble(5, character.getLongitude());
-//        sqLiteStatement.bindString(6, character.getBmp());
+        sqLiteStatement.bindString(6, character.getBmp());
         sqLiteStatement.execute();
     }
 
@@ -96,6 +96,7 @@ public class CharacterDAO implements CharacterSQL {
         sqLiteStatement.bindString(3, character.getWeburl().toString());
         sqLiteStatement.bindDouble(4, character.getLatitude());
         sqLiteStatement.bindDouble(5, character.getLongitude());
+        sqLiteStatement.bindString(6, character.getBmp());
         sqLiteStatement.execute();
     }
 }

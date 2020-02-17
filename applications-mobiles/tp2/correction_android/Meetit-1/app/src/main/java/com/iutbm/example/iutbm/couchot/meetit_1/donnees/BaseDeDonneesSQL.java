@@ -6,9 +6,9 @@ public interface BaseDeDonneesSQL {
             "firstname TEXT, " +
             "familyname TEXT, " +
             "weburl TEXT," +
-            "latitude REAL" +
-            "longitude REAL" +
-            "longitude TEXT" +
+            "latitude REAL," +
+            "longitude REAL," +
+            "bmp TEXT" +
             ")";
     String SQL_DETRUIRE_TABLE_CHARACTER = "DROP TABLE IF EXISTS character";
     String SQL_DECRIRE_TABLE_CHARACTER = "PRAGMA table_info(character);";
