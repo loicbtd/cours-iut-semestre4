@@ -19,14 +19,6 @@ foreach ($donnees_contient as $item){
     array_push($contient, [$code_produit, $quantite]);
 }
 
-//echo("$prix_total: ".$prix_total."\n");
-//echo("$date_commande: ".$date_commande."\n");
-//echo("$code_client: ".$code_client."\n");
-
-//for ($i=0; $i<sizeof($contient); $i++){
-//    echo("produit ".$i.": code=".$contient[$i][0]." et quantite=".$contient[$i][1]."\n");
-//}
-
 $connection = new PDO(
     "mysql:host=" . BDD_hote . ";port=" . BDD_port . ";dbname=" . BDD_base_de_donnees,
     BDD_usager,
@@ -49,7 +41,7 @@ const SQL_INSERER_CONTIENT_COMMANDE = "
 ";
 
 const SQL_SUPPRIMER_COMMANDE = "
-    DELETE FROM commande WHERE mum_commande=?;
+    DELETE FROM commande WHERE num_commande=?;
 ";
 
 const SQL_SUPPRIMER_CONTIENT = "

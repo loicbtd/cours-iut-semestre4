@@ -49,7 +49,7 @@ const SQL_INSERER_CONTIENT_COMMANDE = "
 ";
 
 const SQL_SUPPRIMER_COMMANDE = "
-    DELETE FROM commande WHERE mum_commande=?;
+    DELETE FROM commande WHERE num_commande=?;
 ";
 
 const SQL_SUPPRIMER_CONTIENT = "
