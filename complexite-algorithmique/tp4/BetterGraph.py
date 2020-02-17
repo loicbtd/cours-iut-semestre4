@@ -60,7 +60,9 @@ class BetterGraph(Graph):
     def get_node_property(self, node, key):
         for i in range(0, len(self.nodes_properties)):
             if self.nodes_properties[i].get('node') == node:
+                # print("node found: ", self.nodes_properties[i].get(key) )
                 return self.nodes_properties[i].get(key)
+        return None
 
     def get_all_nodes_with_property(self, key, value):
         nodes_with_property = []
@@ -68,3 +70,8 @@ class BetterGraph(Graph):
             if node_property.get(key) == value:
                 nodes_with_property.append(node_property.get('node'))
         return nodes_with_property
+    #
+    # def get_note_with_property(self, key, value):
+    #     for node_property in self.nodes_properties:
+    #         if node_property.get(key) == value:
+    #             nodes_with_property.append(node_property.get('node'))
