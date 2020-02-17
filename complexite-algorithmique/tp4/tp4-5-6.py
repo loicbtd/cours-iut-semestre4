@@ -183,43 +183,40 @@ def dijkstra(graphe, sommet_de_depart):
             if bg_graphe.get_node_property(sommet, 'marque') == 'non':
                 presence_sommet_non_marque = True
 
-    plus_court_chemin = []
-    sommet_de_fin = -999
-    # Trouver le noeud de fin
-    for sommet in graphe.nodes():
+    # Initialisation du sommet de fin avec un des sommets du graphe ayant un prédécesseur
+    sommet_de_fin = 0
+    for sommet in bg_graphe.nodes():
         if bg_graphe.get_node_property(sommet, 'predecesseur') is not None:
-            if bg_graphe.get_node_property(sommet, 'predecesseur') > str(sommet_de_fin):
-                sommet_de_fin = str(bg_graphe.get_node_property(sommet, 'predecesseur'))
+            sommet_de_fin = sommet
+            break
+
+    # Rercherche du sommet de fin du graphe (celui avec le plus grand prédécesseur)
+    for sommet in bg_graphe.nodes():
+        if bg_graphe.get_node_property(sommet, 'predecesseur') is not None:
+            if bg_graphe.get_node_property(sommet, 'predecesseur') > bg_graphe.get_node_property(sommet_de_fin,
+                                                                                                 'predecesseur'):
+                sommet_de_fin = sommet
+
+    # Inialisation du plus court chemin avec le sommet de fin
+    plus_court_chemin = []
     plus_court_chemin.append(sommet_de_fin)
 
-    # print(plus_court_chemin[-1])
-    # print("Plus court pred; ", bg_graphe.get_node_property(plus_court_chemin[-1], 'predecesseur'))
-    # prout = bg_graphe.get_node_property(plus_court_chemin[-1], 'predecesseur')
-    # print(bg_graphe.get_node_property('2', 'predecesseur'))
-    print(plus_court_chemin[-1])
+    # Recherche du plus court chemin en partant du sommet de fin
     while sommet_de_depart not in plus_court_chemin:
-        plus_court_chemin.append(bg_graphe.get_node_property(bg_graphe.get_node_property(e), 'predecesseur'))
+        predecesseur = bg_graphe.get_node_property(plus_court_chemin[-1], 'predecesseur')
+        if predecesseur is not None:
+            plus_court_chemin.append(predecesseur)
+            print("ajout du sommet: ", predecesseur)
 
+    # Inversion du plus court chemin pour le mettre dans le sens début vers fin
+    plus_court_chemin = [plus_court_chemin[i] for i in range(len(plus_court_chemin) - 1, -1, -1)]
 
-    print("prout", plus_court_chemin.reverse())
+    # Trouver le poids total entre les aretes du plus court chemin
+    poids_aretes_total = 0
+    for i in range(0, len(plus_court_chemin) - 1, 1):
+        poids_aretes_total += bg_graphe.get_edge_data(plus_court_chemin[i], plus_court_chemin[i+1], ['weight']).get('weight')
 
-    print('DEBUT etat du graphe')
-    for sommet in bg_graphe.nodes():
-        print(sommet, ' | ', bg_graphe.get_node_property(sommet, 'marque'), ' | ',
-              bg_graphe.get_node_property(sommet, 'valeur'), ' | plus court predecesseur: ',
-              bg_graphe.get_node_property(sommet, 'predecesseur'))
-    print('FIN etat du graphe')
-
-    # plus_court_chemin = []
-    # while len(plus_court_chemin) < len(bg_graphe.nodes()):
-    #     dernier_predecesseur = -1
-    #     for sommet in bg_graphe.nodes():
-    #         if bg_graphe.get_node_property(sommet, 'predecesseur') > dernier_predecesseur and sommet not in plus_court_chemin:
-    #             dernier_predecesseur = bg_graphe.get_node_property(sommet, 'predecesseur')
-    #     plus_court_chemin.append(dernier_predecesseur)
-    #     print(dernier_predecesseur)
-    #
-    # print(plus_court_chemin.sort(reverse=True))
+    return plus_court_chemin, poids_aretes_total
 
 
 def main():
@@ -227,53 +224,12 @@ def main():
 
     # meilleur_graphe = BG.BetterGraph().copy_graph(graphe)
 
-    dijkstra(graphe, '1')
+    (liste, poids) = dijkstra(graphe, '1')
+
+    print(liste)
+    print(poids)
 
     dessiner_graphe(graphe)
-
-    # meilleur_graphe.add_node('1')
-    # meilleur_graphe.add_node('2')
-    # meilleur_graphe.add_edge('1', '2', weight=11)
-
-    # meilleur_graphe.set_node_property('1', 'prout', 'gros prout')
-    # print(meilleur_graphe.get_node_property('1', "prout"))
-
-    # dessiner_graphe(meilleur_graphe)
-    # imprimer_graphe(meilleur_graphe)
-
-    # proprietes_sommets = []
-    # # dijkstra(graphe, '1')
-    #
-    # imprimer_graphe(graphe)
-    #
-    # print("plus petit label:\n")
-    #
-    # print(min(graphe.nodes()))
-    #
-    # for i in range(len(graphe.nodes())):
-    #     propriete_sommet = {"label": "infini", "marque": "non"}
-    #     proprietes_sommets.append(propriete_sommet)
-    #
-    # for i in range(len(graphe.nodes())):
-    #     print(proprietes_sommets[i].get("label"))
-    #     print(proprietes_sommets[i].get("marque"))
-    #
-    # for i in range(len(graphe.nodes())):
-    #     proprietes_sommets[i].update(marque="oui")
-    #
-    # for i in range(len(graphe.nodes())):
-    #     print(proprietes_sommets[i].get("label"))
-    #     print(proprietes_sommets[i].get("marque"))
-    # dessiner_graphe(graphe)
-
-    # set_node_attributes(graphe, '1', label='infini')
-    # print(get_node_attributes(graphe, 'label'))
-
-    # recuperer_matrice_plus_courtes_distances(graphe, 1)
-
-    # dessiner_graphe(graphe)
-    # graphe = generer_graphe_aleatoire()
-    # imprimer_graphe(graphe)
 
 
 main()
