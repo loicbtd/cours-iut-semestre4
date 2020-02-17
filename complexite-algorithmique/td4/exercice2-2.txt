@@ -1,0 +1,10 @@
+ALGORITHME: somme avec boucle
+
+VARIABLES:
+    n : ENTIER
+
+DEBUT
+    RETOURNER (2n - 1)²
+FIN
+
+=> complexité 4
