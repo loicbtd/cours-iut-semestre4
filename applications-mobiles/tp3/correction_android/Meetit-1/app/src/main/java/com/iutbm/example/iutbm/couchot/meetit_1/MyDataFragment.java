@@ -107,17 +107,17 @@ public class MyDataFragment extends Fragment {
         BaseDeDonnees.getInstance(getContext());
 
         characterDAO = CharacterDAO.getInstance();
-        Character c1, c2, c3;
-        try {
-            c1 = new Character(1, "Jean-François", "Couchot", new URL("http://members.femto-st.fr/jf-couchot/fr"), 47.642900f, 6.840027f, "couturier" );
-            c2 = new Character(2, "Raphaël", "Couturier", new URL("http://members.femto-st.fr/raphael-couturier/fr"), 47.659518f, 6.813337f, "couturier");
-            c3 = new Character(3, "Stéphane","Domas", new URL("http://info.iut-bm.univ-fcomte.fr/staff/sdomas/"), 47.6387143f, 6.8370225f, "titeuf");
-            characterDAO.ajouterCharacter(c1);
-            characterDAO.ajouterCharacter(c2);
-            characterDAO.ajouterCharacter(c3);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+//        Character c1, c2, c3;
+//        try {
+//            c1 = new Character(1, "Jean-François", "Couchot", new URL("http://members.femto-st.fr/jf-couchot/fr"), 47.642900f, 6.840027f, "couturier" );
+//            c2 = new Character(2, "Raphaël", "Couturier", new URL("http://members.femto-st.fr/raphael-couturier/fr"), 47.659518f, 6.813337f, "couturier");
+//            c3 = new Character(3, "Stéphane","Domas", new URL("http://info.iut-bm.univ-fcomte.fr/staff/sdomas/"), 47.6387143f, 6.8370225f, "titeuf");
+//            characterDAO.ajouterCharacter(c1);
+//            characterDAO.ajouterCharacter(c2);
+//            characterDAO.ajouterCharacter(c3);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
 
         characterList = characterDAO.recupererListeCharacter(getContext());
         recyclerView.setAdapter(new ChraracterListAdapter(characterList, getContext()));
