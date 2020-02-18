@@ -190,13 +190,8 @@ def calculer_matrice_adjacence(graphe):
     return matrice_adjacence
 
 
-def main():
-    graphe = lire_graphe_depuis_fichier("graphe-connexe-longer.txt")
-
-    dessiner_graphe(graphe)
-    bg_graphe = Bg.BetterGraph().copy_graph(graphe)
-    matrice_adjacence = calculer_matrice_adjacence(bg_graphe)
-
+def imprimer_matrice_adjacence(graphe):
+    matrice_adjacence = calculer_matrice_adjacence(graphe)
     print(end='\t')
     for sommet in graphe.nodes():
         print(termcolor.colored(sommet, 'red'), end='\t')
@@ -208,6 +203,10 @@ def main():
             print(matrice_adjacence[i][j], end='\t')
         print()
 
+
+def main():
+    graphe = lire_graphe_depuis_fichier("graphe-connexe-longer.txt")
+    imprimer_matrice_adjacence(graphe)
 
 
 main()
