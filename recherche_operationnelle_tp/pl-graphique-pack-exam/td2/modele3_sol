@@ -1,0 +1,43 @@
+Problem:    
+Rows:       5
+Columns:    6
+Non-zeros:  20
+Status:     OPTIMAL
+Objective:  obj = 186 (MINimum)
+
+   No.   Row name   St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 r.3          NS          21.5          21.5             =      -3.07143 
+     2 r.4          NS            21            21             =      -9.42857 
+     3 r.5          NS           1.2           1.2             =      -9.94643 
+     4 r.6          NS          56.3          56.3             =      -10.5714 
+     5 r.7          NS           100           100             =       10.5714 
+
+   No. Column name  St   Activity     Lower bound   Upper bound    Marginal
+------ ------------ -- ------------- ------------- ------------- -------------
+     1 X1           B             50             0               
+     2 X2           B              3             0               
+     3 X3           NL             0             0                         0.1 
+     4 X4           B              0             0               
+     5 X5           B             30             0               
+     6 X6           B             17             0               
+
+Karush-Kuhn-Tucker optimality conditions:
+
+KKT.PE: max.abs.err = 1.42e-14 on row 4
+        max.rel.err = 1.25e-16 on row 4
+        High quality
+
+KKT.PB: max.abs.err = 4.60e-13 on column 4
+        max.rel.err = 4.60e-13 on column 4
+        High quality
+
+KKT.DE: max.abs.err = 3.55e-15 on column 1
+        max.rel.err = 1.60e-16 on column 1
+        High quality
+
+KKT.DB: max.abs.err = 0.00e+00 on row 0
+        max.rel.err = 0.00e+00 on row 0
+        High quality
+
+End of output

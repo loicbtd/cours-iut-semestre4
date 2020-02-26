@@ -1,0 +1,26 @@
+ALGORITHME: somme avec boucle
+
+VARIABLES:
+    n, i, resultat : ENTIER
+
+DEBUT
+    SAISIR n
+    POUR i DE 1 À n DE 1:
+        resltat = resltat + 1
+    FIN POUR
+    RETOURNER resultat
+FIN
+
+=> complexité 5n + 4
+
+
+ALGORITHME: somme sans boucle
+
+VARIABLES:
+    n : ENTIER
+
+DEBUT
+    RETOURNER n - 1
+FIN
+
+=> complexité
