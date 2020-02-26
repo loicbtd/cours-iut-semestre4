@@ -5,13 +5,12 @@ require_once("./env.php");
 const SQL_LISTER_LEADERBOARD = "
     SELECT id_leaderboard, username, score 
     FROM leaderboard
-    ORDER BY score DESC
 ";
 
 $connection = new PDO(
-    "mysql:host=" . BDD_hote . ";port=" . BDD_port . ";dbname=" . BDD_base_de_donnees,
-    BDD_usager,
-    BDD_mot_de_passe);
+    "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_DATABASE,
+    DB_USER,
+    DB_PASSWORD);
 
 $statement = $connection->prepare(SQL_LISTER_LEADERBOARD);
 $statement->execute();
