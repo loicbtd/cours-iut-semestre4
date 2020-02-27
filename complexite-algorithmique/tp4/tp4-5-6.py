@@ -17,6 +17,7 @@ def lire_graphe_depuis_fichier(nom_fichier):
         graphe.add_node(sommet)
 
         liste_aretes = re.findall(r'(\w*[(]\w*[)])', ligne)
+        print(liste_aretes)
         for arete in liste_aretes:
             proprietes_arete = re.findall(r'([^()]+)', arete)
             sommet_voisin = proprietes_arete[0]
