@@ -1,5 +1,5 @@
 import networkx as nx
-import BetterGraph as Bg
+import tp4.BetterGraph as Bg
 import itertools as it
 import random
 import re
