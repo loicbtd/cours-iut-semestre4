@@ -16,6 +16,7 @@ menu_situation = ("Menu Situation",
 
 
 def traiter_signal(signal, traitement):
+    print()
     exit(0)
 
 
@@ -40,16 +41,11 @@ def start_program():
         if action is None:
             break
 
-        boucle_secondaire = True
-        while boucle_secondaire:
+        while True:
             action = terminal.choisir_dans_menu(menu_situation)
             if action == 1:
                 situation.traiter_la_situation(terminal)
             if action == 2:
-                situation.resoudre_situation(terminal)
-            if action == 3:
-                situation.analyser_resultats()
-            if action == 4:
                 situation.sauvegarder_situation("donnee")
             if action is None:
                 break
