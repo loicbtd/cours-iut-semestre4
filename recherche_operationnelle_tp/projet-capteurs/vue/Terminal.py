@@ -1,5 +1,6 @@
 import os
 import time
+import prettytable
 
 
 class Terminal:
@@ -29,6 +30,17 @@ class Terminal:
         else:
             time.sleep(duree)
         self.nettoyer()
+
+    @staticmethod
+    def imprimer(contenu):
+        print(contenu, end='')
+
+    @staticmethod
+    def imprimer_tableau(en_tete, lignes):
+        tableau = prettytable.PrettyTable(en_tete)
+        for ligne in lignes:
+            tableau.add_row(ligne)
+        print(tableau)
 
     def set_partie(self, partie):
         self.__partie = partie

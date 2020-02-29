@@ -1,4 +1,6 @@
 from modele.Situation import *
+import signal
+import sys
 
 menu_principal = ("Menu Principal",
                   "Choisissez une action:",
@@ -8,14 +10,18 @@ menu_principal = ("Menu Principal",
 
 menu_situation = ("Menu Situation",
                   "Choisissez une action: ",
-                  {'1': 'Afficher configurations élémentaires',
-                   '2': 'Écrire le programme linéaire correspondant au problème d\'ordonnancement et le résoudre avec le solveur GLPK',
-                   '3': 'Analyse des résultats',
-                   '4': 'Sauvegarder la situation'},
+                  {'1': 'Traiter la situation',
+                   '2': 'Sauvegarder la situation'},
                   "Retour")
 
 
+def traiter_signal(signal, traitement):
+    exit(0)
+
+
 def start_program():
+    signal.signal(signal.SIGINT, traiter_signal)
+
     terminal = Terminal.Terminal("Projet : Problème d'activation de capteurs pour surveillance de zones")
 
     terminal.imprimer_message("\t\t\t\tBienvenue !\n\n\n\n\t\t\t® Loïc BERTRAND - 2020  ", 0)
@@ -38,7 +44,7 @@ def start_program():
         while boucle_secondaire:
             action = terminal.choisir_dans_menu(menu_situation)
             if action == 1:
-                situation.afficher_configurations_elemetaires(terminal)
+                situation.traiter_la_situation(terminal)
             if action == 2:
                 situation.resoudre_situation(terminal)
             if action == 3:
@@ -50,8 +56,10 @@ def start_program():
 
 
 def test():
+    terminal = Terminal.Terminal("Projet : Problème d'activation de capteurs pour surveillance de zones")
     situation = Situation()
-    situation.sauvegarder_situation("donnee")
+    situation.lire_depuis_fichier("/home/loicbtd/projects/cours/recherche_operationnelle_tp/projet-capteurs/donnee/mini")
+    situation.resoudre_situation(terminal)
 
 
 def main():
