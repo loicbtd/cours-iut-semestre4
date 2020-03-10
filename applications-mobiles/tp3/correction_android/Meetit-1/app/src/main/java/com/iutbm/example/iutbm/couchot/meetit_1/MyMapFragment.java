@@ -44,12 +44,9 @@ import java.util.List;
  * create an instance of this fragment.
  */
 public class MyMapFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
@@ -57,7 +54,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     private boolean mRequestingLocationUpdates;
     private LocationRequest mLocationRequest;
     private float radius;
-
 
     private List<Character> characterList = new ArrayList<>();
     private CharacterDAO characterDAO;
@@ -93,7 +89,9 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -155,10 +153,9 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     @Override
     public void onMapReady(GoogleMap googleMap) {
         this.googleMap = googleMap;
-//        LatLng sydney = new LatLng(-34, 151);
-//        googleMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-//        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-//        googleMap.moveCamera(CameraUpdateFactory.zoomTo(10));
+        LatLng belfort = new LatLng(47.6397, 6.8638);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(belfort));
+        googleMap.moveCamera(CameraUpdateFactory.zoomTo(10));
     }
 
     @Override
@@ -166,6 +163,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
         super.onStart();
         mGoogleApiClient.connect();
     }
+
     @Override
     public void onStop() {
         super.onStop();
@@ -175,12 +173,10 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
 
     @Override
     public void onConnected(@Nullable Bundle bundle) {
-        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             requestLocationPermission();
         } else {
-            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
-                    mGoogleApiClient);
+            mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
             if (mLastLocation != null) {
                 String lats = "" + mLastLocation.getLatitude();
                 String longs = "" + mLastLocation.getLongitude();
@@ -203,11 +199,11 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                 REQUEST_LOCATION);
     }
 
-    private void setLocationParmeters(){
+    private void setLocationParameters(){
 
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        this.mRequestingLocationUpdates = sharedPreferences.getBoolean(getResources().getString(R.string.key_location_switch), false);;
+        this.mRequestingLocationUpdates = sharedPreferences.getBoolean(getResources().getString(R.string.key_location_switch), false);
 
         this.mLocationRequest = LocationRequest.create().setInterval(Long.parseLong(sharedPreferences.getString(getResources().getString(R.string.key_search_delay), "0")));
 
@@ -231,7 +227,12 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
         if (location != null){
             Toast.makeText(getContext(), location.getLatitude()+" "+location.getLongitude(), Toast.LENGTH_SHORT).show();
 
+            this.mLastLocation = location;
+
+            googleMap.clear();
+
             float opacity;
+            // afficher à proximité
             for (Character character : characterList) {
                 if (character.getLatitude() < (float) location.getLatitude() + radius && character.getLongitude() < (float) location.getLongitude() + radius){
                     Toast.makeText(getContext(), character.getFirstname()+" est à proximité !", Toast.LENGTH_SHORT).show();
@@ -240,14 +241,11 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                 else {
                     opacity = 0.5f;
                 }
+
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.alpha(opacity);
                 markerOptions.position(new LatLng(character.getLatitude(), character.getLongitude())).title(character.getFirstname());
                 googleMap.addMarker(markerOptions);
-                googleMap.moveCamera(CameraUpdateFactory.newLatLng(new LatLng(character.getLatitude(), character.getLongitude())));
-                googleMap.moveCamera(CameraUpdateFactory.zoomTo(10));
-
-
             }
         }
     }
@@ -255,7 +253,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     @Override
     public void onResume() {
         super.onResume();
-        setLocationParmeters();
+        setLocationParameters();
         if (mGoogleApiClient.isConnected()){
             if (mRequestingLocationUpdates) {
                 startLocationUpdates();
