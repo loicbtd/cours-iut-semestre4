@@ -1,6 +1,5 @@
 from modele.Situation import *
 import signal
-import sys
 
 menu_principal = ("Menu Principal",
                   "Choisissez une action:",

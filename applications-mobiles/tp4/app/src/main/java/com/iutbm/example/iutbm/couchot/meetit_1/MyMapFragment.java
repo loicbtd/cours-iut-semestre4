@@ -84,7 +84,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
      * @param param2 Parameter 2.
      * @return A new instance of fragment MyMapFragment.
      */
-    // TODO: Rename and change types and number of parameters
     public static MyMapFragment newInstance(String param1, String param2) {
         MyMapFragment fragment = new MyMapFragment();
         Bundle args = new Bundle();
@@ -140,7 +139,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     }
 
 
-    // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
@@ -197,12 +195,12 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
 
 
 //                TODO: TOAST
-//                Toast.makeText(getActivity(), lats + " " + longs, Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), lats + " " + longs, Toast.LENGTH_LONG).show();
             }
 
 
 
-            //            TODO: BROADCAST
+            // TODO: BROADCAST
             BestRestaurantAsyncTask bestRestaurantAsyncTask = new BestRestaurantAsyncTask(getContext(), new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
             bestRestaurantAsyncTask.execute();
 
@@ -261,7 +259,7 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                 if (character.getLatitude() < (float) location.getLatitude() + radius && character.getLongitude() < (float) location.getLongitude() + radius){
 
 //                    TODO: TOAST A PROXIMITE
-//                    Toast.makeText(getContext(), character.getFirstname()+" est à proximité !", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), character.getFirstname()+" est à proximité !", Toast.LENGTH_SHORT).show();
 
                     opacity = 1;
                 }
@@ -337,7 +335,6 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
      * >Communicating with Other Fragments</a> for more information.
      */
     public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
 }

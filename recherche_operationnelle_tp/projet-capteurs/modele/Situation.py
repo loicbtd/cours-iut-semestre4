@@ -156,14 +156,22 @@ class Situation:
         return configurations_elementaires
 
     def traiter_la_situation(self, terminal):
+
+        terminal.set_partie("Traitement de la situation courante")
+        terminal.set_activite("")
+        terminal.imprimer_en_tete()
+
+        terminal.imprimer("\n> Situation:\n")
+        self.imprimer_situation(terminal)
+
         ##################################################
         #                                                #
-        #                   Traitements                  #
+        #            Configurations élémentaires         #
         #                                                #
         ##################################################
 
         ##################################################
-        #           Configurations élémentaires          #
+        #                  Traitements                   #
         ##################################################
         # trouver tous les sous ensembles / configurations
         toutes_les_configurations = self.generer_toutes_les_configurations(range(0, len(self.__capteurs)))
@@ -173,8 +181,27 @@ class Situation:
         configurations_valides_elementaires = self.__generer_configurations_elementaires(configurations_valides)
 
         ##################################################
-        #                Résolution GLPK                 #
+        #                    Affichages                  #
         ##################################################
+
+        terminal.imprimer("\n> Configurations élémentaires:\n")
+        en_tete = ["Configurations élémentaires", "Capteurs"]
+        lignes = []
+        for configuration_valide_elementaire in configurations_valides_elementaires:
+            ligne = ["u"+str(configurations_valides_elementaires.index(configuration_valide_elementaire)+1), ', '.join(["S" + str((indice_capteur + 1)) for indice_capteur in configuration_valide_elementaire])]
+            lignes.append(ligne)
+        terminal.imprimer_tableau(en_tete, lignes)
+
+        ##################################################
+        #                                                #
+        #                Résolution GLPK                 #
+        #                                                #
+        ##################################################
+
+        ##################################################
+        #                  Traitements                   #
+        ##################################################
+
         probleme = glpk.LPX()
         probleme.name = 'Maximiser la durée de vie du réseau'
         probleme.obj.maximize = True
@@ -204,38 +231,16 @@ class Situation:
         duree_de_vie_optimale = probleme.obj.value  # récupérer la durée de vie optimale
 
         ##################################################
-        #                                                #
         #                    Affichages                  #
-        #                                                #
         ##################################################
 
-        terminal.set_partie("Traitement de la situation courante")
-        terminal.set_activite("")
-        terminal.imprimer_en_tete()
-
-        terminal.imprimer("\n> Situation:\n")
-        self.imprimer_situation(terminal)
-
-        ##################################################
-        #           Configurations élémentaires          #
-        ##################################################
-        terminal.imprimer("\n> Configurations élémentaires:\n")
-        en_tete = ["Configurations élémentaires", "Capteurs"]
-        lignes = []
-        for configuration_valide_elementaire in configurations_valides_elementaires:
-            ligne = ["u"+str(configurations_valides_elementaires.index(configuration_valide_elementaire)+1), ', '.join(["S" + str((indice_capteur + 1)) for indice_capteur in configuration_valide_elementaire])]
-            lignes.append(ligne)
-        terminal.imprimer_tableau(en_tete, lignes)
-
-        ##################################################
-        #                Résolution GLPK                 #
-        ##################################################
         terminal.imprimer("\n> Maximiser la durée de vie des capteurs:\n")
 
-        terminal.imprimer("\nOBJECTIF: maximiser "+' + '.join(["tu"+str(i+1) for i in range(len(configurations_valides_elementaires))]))
+        terminal.imprimer("\nOBJECTIF: maximiser " + ' + '.join(
+            ["tu" + str(i + 1) for i in range(len(configurations_valides_elementaires))]))
 
         for indice_capteur in range(len(self.__capteurs)):
-            terminal.imprimer("\nC" + str(indice_capteur+1)+": ")
+            terminal.imprimer("\nC" + str(indice_capteur + 1) + ": ")
             indices_configurations = []
             for configuration in configurations_valides_elementaires:
                 if indice_capteur in configuration:
@@ -243,12 +248,14 @@ class Situation:
             terminal.imprimer(' + '.join(["tu" + str(i + 1) for i in indices_configurations]))
             terminal.imprimer(" ≤ " + str(self.__capteurs[indice_capteur].get_duree_de_vie()))
 
-        print("\n\nLa soluation optimale optenue par la méthode du simplexe est:\n" + '\n'.join('%s* = %g' % (c.name, c.primal) for c in probleme.cols))  # Print struct variable names and primal values
+        print("\n\nLa soluation optimale optenue par la méthode du simplexe est:\n" + '\n'.join(
+            '%s* = %g' % (c.name, c.primal) for c in probleme.cols))  # Print struct variable names and primal values
 
         print("\nLe réseau a une durée de vie optimale de " + str(duree_de_vie_optimale) + " unités de temps.")
 
         for colonne in probleme.cols:
-            terminal.imprimer("\nLa configuration u" + str(colonne.index+1) + " est active pendant " + str(colonne.primal) + " unités de temps.")
+            terminal.imprimer("\nLa configuration u" + str(colonne.index + 1) + " est active pendant " + str(
+                colonne.primal) + " unités de temps.")
 
         terminal.imprimer("\n\n\t\t< Appuyer sur entrer pour passer >\n")
         input()
@@ -301,7 +308,6 @@ class Situation:
         self.imprimer_situation(terminal)
 
         terminal.imprimer("\nSoit t1, t2, t3")
-
 
         terminal.imprimer("\n\n\t\t< Appuyer sur entrer pour passer >\n")
         input()

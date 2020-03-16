@@ -1,46 +1,10 @@
-Loïc BERTRAND - S4A2
 
-# Rapport - Projet : Problème d'activation de capteurs pour surveillance de zones
 
-J'ai choisi le langage de programmation python 3 pour répondre à ce problème.
+# Partie 1 : Manipulation des données
 
-## Partie 1 : manipulation des données
+J’ai choisi Python 3.8 pour traiter ce projet. Afin de modéliser les données, j'ai créé les objets «Capteur» et «Situation». L'objet «Capteur» contient les attributs «duree_de_vie» et «zones_couvertes». L'attribut «duree_de_vie» est un entier égal à la durée de vie du capteur. L'attribut «zones_couvertes» est une liste d'entiers qui correspondent aux indices des zones couvertes. Une situation contient les attributs «capteurs» et «zones». L'attribut capteurs est une liste d'objets «Capteur». L'attribut «zones» est une liste d'entiers qui correspondent aux indices de toutes les zones de la situation. Les données d'une situation peuvent être instanciées par la lecture d'un fichier ou par une saisie manuelle.
 
-### Saisie manuelle d'une situation
-
-```python
-    def saisir_manuellement(self, terminal):
-        terminal.set_partie("Saisie manuelle d'une situation")
-        # Saisir nombre de capteurs
-        nombre_capteurs = terminal.saisir(("nombre de capteurs", "entier+0"))
-        # Saisir nombre de zones
-        nombre_zones = terminal.saisir(("nombre de zones", "entier+0"))
-        self.__zones = [i for i in range(1, nombre_zones + 1)]
-        # Pour chaque capteur
-        for i in range(nombre_capteurs):
-            terminal.set_activite("Capteur n° " + str(i + 1))
-            # Saisir duree_de_vie
-            duree_de_vie = terminal.saisir(("durée de vie", "entier+0"))
-            # Saisir zones couvertes
-            zone_couvertes = list()
-            while True:
-                if set(zone_couvertes) == set(self.__zones):
-                    break
-                zone_a_couvrir = terminal.saisir(("Zones non couvertes: " + str(
-                    [i for i in self.__zones if i not in zone_couvertes]) + "\n" + "Zones couvertes: " + str(
-                    zone_couvertes) + "\n" + "\n> Saisir une zone à couvrir (q pour finir)", "entier+0|q"))
-                if zone_a_couvrir == "q":
-                    break
-                if zone_a_couvrir not in [i for i in self.__zones if i not in zone_couvertes]:
-                    continue
-                zone_couvertes.append(zone_a_couvrir)
-                continue
-            # ajouter capteur
-            self.__capteurs.append(Capteur.Capteur(duree_de_vie, zone_couvertes))
-        terminal.imprimer_message("Saisie de la situation complétée avec succès !", 2)
-```
-
-### Chargement à partir d'un fichier
+## Chargement à partir d'un  fichier
 
 ```python
     def lire_depuis_fichier(self, chemin_absolu_fichier):
@@ -72,10 +36,73 @@ J'ai choisi le langage de programmation python 3 pour répondre à ce problème.
         return 0
 ```
 
-## Partie 2 : construction de configurations élémentaires
+## Saisie manuelle
+
+J'ai créé un objet «Terminal» afin d'implémenter une seule fois toutes les opérations de contrôle de saisie et d'affichage. 
 
 ```python
-	def __est_configuration_valide(self, configuration):
+ 	def saisir_manuellement(self, terminal):
+        terminal.set_partie("Saisie manuelle d'une situation")
+        # Saisir nombre de capteurs
+        nombre_capteurs = terminal.saisir(("nombre de capteurs", "entier+0"))
+        # Saisir nombre de zones
+        nombre_zones = terminal.saisir(("nombre de zones", "entier+0"))
+        self.__zones = [i for i in range(1, nombre_zones + 1)]
+        # Pour chaque capteur
+        for i in range(nombre_capteurs):
+            terminal.set_activite("Capteur n° " + str(i + 1))
+            # Saisir duree_de_vie
+            duree_de_vie = terminal.saisir(("durée de vie", "entier+0"))
+            # Saisir zones couvertes
+            zone_couvertes = list()
+            while True:
+                if set(zone_couvertes) == set(self.__zones):
+                    break
+                zone_a_couvrir = terminal.saisir(("Zones non couvertes: " + str(
+                    [i for i in self.__zones if i not in zone_couvertes]) + "\n" + "Zones couvertes: " + str(
+                    zone_couvertes) + "\n" + "\n> Saisir une zone à couvrir (q pour finir)", "entier+0|q"))
+                if zone_a_couvrir == "q":
+                    break
+                if zone_a_couvrir not in [i for i in self.__zones if i not in zone_couvertes]:
+                    continue
+                zone_couvertes.append(zone_a_couvrir)
+                continue
+            # ajouter capteur
+            self.__capteurs.append(Capteur.Capteur(duree_de_vie, zone_couvertes))
+        terminal.imprimer_message("Saisie de la situation complétée avec succès !", 2)
+```
+
+# Partie 2 : construction de configurations élémentaires
+
+L'objet situation contient des méthodes qui permettent de générer la liste de toutes les configurations élémentaires valides. Dans un premier temps j'ai choisi de générer une liste de toutes les configurations. Dans un deuxième temps, je génère une liste des configurations valides. Dans un troisième temps, je génère une liste des configurations élémentaires.
+
+## Génération de toutes les configurations
+
+```python
+	@staticmethod
+    def generer_toutes_les_configurations(elements):
+        toutes_les_configurations = []
+        for i in range(2 ** len(elements)):
+            configuration = []
+            for j in range(len(elements)):
+                if (i & (1 << j)) != 0:
+                    configuration.append(elements[j])
+            if configuration not in toutes_les_configurations:
+                toutes_les_configurations.append(configuration)
+        return toutes_les_configurations
+```
+
+## Génération des configurations valides
+
+```python
+	def __generer_configurations_valides(self, configurations):
+        configurations_valides = []
+        for configuration in configurations:
+            if self.__est_configuration_valide(configuration):
+                configurations_valides.append(configuration)
+        return configurations_valides
+    
+    def __est_configuration_valide(self, configuration):
         zones_couvertes = []
         for indice_capteur in configuration:
             for zone_couverte in self.__capteurs[indice_capteur].get_zone_couvertes():
@@ -84,17 +111,15 @@ J'ai choisi le langage de programmation python 3 pour répondre à ce problème.
                 if set(zones_couvertes) == set(self.__zones):
                     return True
         return False
+```
 
-    def __generer_configurations_valides(self, configurations):
-        configurations_valides = []
-        for configuration in configurations:
-            if self.__est_configuration_valide(configuration):
-                configurations_valides.append(configuration)
-        return configurations_valides
 
+
+## Génération des configurations élémentaires
+
+```python
     def __generer_configurations_elementaires(self, configurations):
         configurations_elementaires = []
-        # pour chaque configuration
         for configuration in configurations:
             compteur_configurations_valides = 0
             for sous_configuration in self.generer_toutes_les_configurations(configuration):
@@ -131,15 +156,13 @@ probleme = glpk.LPX()
         for indice_capteur in range(len(self.__capteurs)):  # pour chaque capteur
             for configuration in configurations_valides_elementaires:  # pour chaque configuration
                 if indice_capteur in configuration:
-                    matrice_coefficients.append(1.0)  # si le capteur est présent, alors son coefficien vaut 1
+                    matrice_coefficients.append(1.0)  # si le capteur est présent, alors son coefficient vaut 1
                 else:
-                    matrice_coefficients.append(0.0)  # si le capteur est absent, alors son coefficien vaut 0
+                    matrice_coefficients.append(0.0)  # si le capteur est absent, alors son coefficient vaut 0
         probleme.matrix = matrice_coefficients  # affecter la matrice des coeffecients au problème
         probleme.simplex()  # résoudre le problème avec la méthode du simplex
         duree_de_vie_optimale = probleme.obj.value  # récupérer la durée de vie optimale
 ```
-
-
 
 
 ## Partie 4 : analyse des résultats
