@@ -13,7 +13,7 @@ $connection = new PDO(
     BDD_usager,
     BDD_mot_de_passe);
 
-$statement = $connection->prepare(SQL_LISTER_LEADERBOARD);
+$statement = $connection->prepare(SQL_LISTER_CLIENTS);
 $statement->execute();
 
 $reponse = new DOMDocument('1.0', 'utf-8');
