@@ -1,7 +1,10 @@
 package com.iutbm.example.iutbm.couchot.meetit_1;
 
 import android.Manifest;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -27,12 +30,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.iutbm.example.iutbm.couchot.meetit_1.donnees.BaseDeDonnees;
 import com.iutbm.example.iutbm.couchot.meetit_1.donnees.CharacterDAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -43,7 +48,7 @@ import java.util.List;
  * Use the {@link MyMapFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MyMapFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class MyMapFragment extends Fragment implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, GoogleMap.OnMarkerClickListener {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -62,6 +67,8 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     private OnFragmentInteractionListener mListener;
 
     private GoogleApiClient mGoogleApiClient = null;
+
+    private BroadcastReceiver restaurantBR;
 
     static int REQUEST_LOCATION = 1;
 
@@ -105,6 +112,13 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                     .addApi(LocationServices.API)
                     .build();
         }
+
+        this.restaurantBR = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                Toast.makeText(context, intent.getStringExtra(getResources().getString(R.string.key_best_restaurant_name_value)), Toast.LENGTH_SHORT).show();
+            }
+        };
 
     }
 
@@ -180,8 +194,18 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
             if (mLastLocation != null) {
                 String lats = "" + mLastLocation.getLatitude();
                 String longs = "" + mLastLocation.getLongitude();
-                Toast.makeText(getActivity(), lats + " " + longs, Toast.LENGTH_LONG).show();
+
+
+//                TODO: TOAST
+//                Toast.makeText(getActivity(), lats + " " + longs, Toast.LENGTH_LONG).show();
             }
+
+
+
+            //            TODO: BROADCAST
+            BestRestaurantAsyncTask bestRestaurantAsyncTask = new BestRestaurantAsyncTask(getContext(), new LatLng(mLastLocation.getLatitude(), mLastLocation.getLongitude()));
+            bestRestaurantAsyncTask.execute();
+
         }
 
         if (mRequestingLocationUpdates){
@@ -224,18 +248,21 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
 
     @Override
     public void onLocationChanged(Location location) {
+
+        characterList = characterDAO.recupererListeCharacter(getContext());
         if (location != null){
-            Toast.makeText(getContext(), location.getLatitude()+" "+location.getLongitude(), Toast.LENGTH_SHORT).show();
 
             this.mLastLocation = location;
-
             googleMap.clear();
 
             float opacity;
             // afficher à proximité
             for (Character character : characterList) {
                 if (character.getLatitude() < (float) location.getLatitude() + radius && character.getLongitude() < (float) location.getLongitude() + radius){
-                    Toast.makeText(getContext(), character.getFirstname()+" est à proximité !", Toast.LENGTH_SHORT).show();
+
+//                    TODO: TOAST A PROXIMITE
+//                    Toast.makeText(getContext(), character.getFirstname()+" est à proximité !", Toast.LENGTH_SHORT).show();
+
                     opacity = 1;
                 }
                 else {
@@ -245,6 +272,9 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                 MarkerOptions markerOptions = new MarkerOptions();
                 markerOptions.alpha(opacity);
                 markerOptions.position(new LatLng(character.getLatitude(), character.getLongitude())).title(character.getFirstname());
+                markerOptions.title(character.getFirstname() + " " + character.getFamilyname());
+                markerOptions.snippet(character.getWeburl());
+                googleMap.setOnMarkerClickListener(this);
                 googleMap.addMarker(markerOptions);
             }
         }
@@ -261,7 +291,11 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
                 stopLocationUpdates();
             }
         }
+        Objects.requireNonNull(getContext()).registerReceiver(restaurantBR, new IntentFilter(getResources().getString(R.string.key_restaurant_intent)));
     }
+
+
+
     protected void startLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -280,8 +314,16 @@ public class MyMapFragment extends Fragment implements OnMapReadyCallback, Googl
     public void onPause() {
         super.onPause();
         stopLocationUpdates();
+        Objects.requireNonNull(getContext()).unregisterReceiver(restaurantBR);
     }
 
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Uri uriUrl = Uri.parse(marker.getSnippet());
+        Intent launchBrowser = new Intent(Intent.ACTION_VIEW, uriUrl);
+        startActivity(launchBrowser);
+        return false;
+    }
 
 
     /**
