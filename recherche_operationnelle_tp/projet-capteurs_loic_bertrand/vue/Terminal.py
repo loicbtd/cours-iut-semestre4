@@ -130,3 +130,16 @@ class Terminal:
                 return donnee_validee, ""
             except ValueError:
                 return None, "Merci de saisir un entier ou bien 'q'."
+
+    def choisir_oui_non(self, consigne):
+        print(consigne)
+        while True:
+            donnee = input()
+            if donnee == "o" or donnee == "O":
+                return True
+            elif donnee == "n" or donnee == "N":
+                return False
+            else:
+                print("\nMerci de saisir o pour oui ou n pour non.")
+
+

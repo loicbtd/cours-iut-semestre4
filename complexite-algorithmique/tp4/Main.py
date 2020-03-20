@@ -1,5 +1,5 @@
 import networkx as nx
-import tp4.BetterGraph as Bg
+import BetterGraph as Bg
 import itertools as it
 import random
 import re
@@ -204,10 +204,12 @@ def imprimer_matrice_adjacence(graphe):
             print(matrice_adjacence[i][j], end='\t')
         print()
 
+def lancer_programme():
 
 def main():
     graphe = lire_graphe_depuis_fichier("graphe-connexe-longer.txt")
     imprimer_matrice_adjacence(graphe)
+    lancer_programme()
 
 
 main()
