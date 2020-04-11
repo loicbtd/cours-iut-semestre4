@@ -4,13 +4,13 @@ help:
 	@echo "	make run:	run project"
 
 install:
-	@pip install prettytable --user
-	@pip install glpk --user
-	@pip install pylab-sdk --user
-	@pip install numpy --user
-	@pip install matplotlib --user
-	@pip install progress --user
+	@pip3 install prettytable --user
+	@pip3 install glpk --user
+	@pip3 install pylab-sdk --user
+	@pip3 install numpy --user
+	@pip3 install matplotlib --user
+	@pip3 install progress --user
 
 run:
-	@python Main.py
+	@python3 Main.py
 

@@ -1,0 +1,42 @@
+#!/bin/sh
+
+comparaison_des_empreintes(){
+  echo "NOTICE: comparaison des empreintes"
+  local empreinte1=$1
+  local empreinte2=$2
+  echo "NOTICE: empreinte1: $empreinte1"
+  echo "NOTICE: empreinte2: $empreinte2"
+  [ "$empreinte1" = "$empreinte2" ] \
+    && echo "RESULTAT: empreintes identiques !" && return 0 \
+    || echo "RESULTAT: empreintes différentes !" || return 1
+}
+
+FICHIER1="./fichier1"
+FICHIER2="./fichier2"
+
+printf "\n\n"
+
+echo "**** Simulation d'un transfert de fichier avec succès****"
+echo "NOTICE: génération du fichier 1"
+touch $FICHIER1
+echo "NOTICE: génération de l'empreinte du fichier1"
+empreinte_fichier_1=$(sha1sum $FICHIER1 | cut --delimiter=' ' --field=1)
+echo "NOTICE: simulation du transfert du fichier 1 vers le fichier 2."
+cp $FICHIER1 $FICHIER2
+echo "NOTICE: génération de l'empreinte du fichier2"
+empreinte_fichier_2=$(sha1sum $FICHIER2 | cut --delimiter=' ' --field=1)
+comparaison_des_empreintes $empreinte_fichier_1 $empreinte_fichier_2
+
+printf "\n\n"
+
+echo "**** Simulation d'un transfert de fichier avec échec****"
+echo "NOTICE: génération du fichier 1"
+touch $FICHIER1
+echo "NOTICE: génération de l'empreinte du fichier1"
+empreinte_fichier_1=$(sha1sum $FICHIER1 | cut --delimiter=' ' --field=1)
+echo "NOTICE: simulation du transfert du fichier 1 vers le fichier 2."
+cp $FICHIER1 $FICHIER2
+echo "Bonjour Monde" > $FICHIER2
+echo "NOTICE: génération de l'empreinte du fichier2"
+empreinte_fichier_2=$(sha1sum $FICHIER2 | cut --delimiter=' ' --field=1)
+comparaison_des_empreintes $empreinte_fichier_1 $empreinte_fichier_2
