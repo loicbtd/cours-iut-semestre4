@@ -1,9 +1,10 @@
 import random
 import sympy
+import numpy
 import math
 
 
-def comvertir_chaine_vers_ascii(chaine):
+def convertir_chaine_vers_ascii(chaine):
     return int(''.join([f'{ord(c):03}' for c in chaine]))
 
 
@@ -40,7 +41,6 @@ def clef(p1, p2):
 
 def main():
     random.seed(1)
-
     p1 = generer_nombre_premier_aleatoire()
     p2 = generer_nombre_premier_aleatoire()
 
