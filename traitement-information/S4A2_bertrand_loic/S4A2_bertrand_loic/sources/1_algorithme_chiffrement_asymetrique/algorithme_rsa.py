@@ -27,14 +27,15 @@ def trouver_pgcde_avec_bezout(entier_a, entier_b):
     :param entier_b
     :type entier_b: int
     :return tuple (r, u, v) où r = PGCD(entier_a, entier_b) et u, v deux entiers tels que a*u + b*v = r
+    :rtype: tuple
     """
-    r1, u1, v1 = entier_a, 1, 0  # On instancie r, u et v
-    r2, u2, v2 = entier_b, 0, 1  # On instancie r, u et v
+    r1, u1, v1 = entier_a, 1, 0  # On instancie r1, u1 et v1
+    r2, u2, v2 = entier_b, 0, 1  # On instancie r2, u2 et v2
     while r2 != 0:
         q = r1 // r2
         rs, us, vs = r1, u1, v1
-        r1, u1, v = r2, u2, v2
-        rp, up, vp = (rs - q * r2), (us - q * u2), (vs - q * v2)
+        r1, u1, v1 = r2, u2, v2
+        r2, u2, v2 = (rs - q * r2), (us - q * u2), (vs - q * v2)
     return r1, u1, v1
 
 
@@ -72,6 +73,7 @@ def chiffrer_message(cle_privee, message):
     :param message à chiffrer
     :type message: str
     :return message chiffré
+    :rtype: list
     """
     (n, c) = cle_privee
     # Conversion du message en ASCII
@@ -84,9 +86,9 @@ def chiffrer_message(cle_privee, message):
             message_ascii[index] = element
     # Regroupement du message ascii
     message_ascii = ''.join(message_ascii)
-    # Définition de la taille des blocs du message
+    # Définition de la taille des groupes du message
     debut, fin = 0, 4
-    # Ajout éventuel de zéros au message afin qu'il soit un multiple de la taille d'un bloc, içi 4
+    # Ajout éventuel de zéros au message afin qu'il soit un multiple de la taille d'un groupe, içi 4
     while len(message_ascii) % fin != 0:
         message_ascii += '0'
     # Groupement
@@ -98,3 +100,45 @@ def chiffrer_message(cle_privee, message):
     # Chiffrement et retour des groupes
     return [str(((int(groupe)) ** c) % n) for groupe in groupes]
 
+
+def dechiffrer_message(cle_publique, groupes):
+    """
+    :param cle_publique
+    :type cle_publique: tuple
+    :param groupes: groupes à déchiffrer
+    :type groupes: list
+    :return message déchiffré
+    :rtype str
+    """
+    (n, d) = cle_publique
+    # Déchiffrage des groupes
+    groupes_dechiffres = [str((int(groupe) ** d) % n) for groupe in groupes]
+    # Formation de groupes de 4
+    for index, element in enumerate(groupes_dechiffres):
+        if len(element) < 4:
+            while len(element) < 4:
+                element = '0' + element
+            groupes_dechiffres[index] = element
+    # Groupement
+    groupes_dechiffres = ''.join(groupes_dechiffres)
+    # Conversion en ascii
+    message_ascii = ""
+    debut = 0
+    fin = 3
+    while fin < len(groupes_dechiffres):
+        message_ascii += chr(int(groupes_dechiffres[debut:fin]))
+        debut = fin
+        fin += 3
+    return message_ascii
+
+
+def main():
+    (cle_privee, cle_publique) = generer_cle()
+    message = "Bonjour Monde"
+    message_chiffre = chiffrer_message(cle_privee, message)
+    print("Message chiffré: " + str(message_chiffre))
+    message_dechiffre = dechiffrer_message(cle_publique, message_chiffre)
+    print("Message dechiffre: " + message_dechiffre)
+
+
+main()

@@ -111,6 +111,7 @@ public class ServerThread extends Thread {
         try {
             s1 = (String) objectInputStream.readObject();
             s2 = (String) objectInputStream.readObject();
+
         } catch (Exception ignored) {
         }
 
@@ -126,6 +127,7 @@ public class ServerThread extends Thread {
         objectOutputStream.writeInt(s1.length() - s2.length());
         objectOutputStream.flush();
 
+        System.out.println();
         List<String> l = new ArrayList<>();
 
         try {
